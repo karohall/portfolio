@@ -343,6 +343,19 @@ nav {
   border-radius: 2px;
 }
 
+.project-img-grid-4 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: clamp(6px, 1vw, 12px);
+  margin-bottom: clamp(56px, 8vw, 96px);
+}
+
+.project-img-grid-4 img {
+  width: 100%;
+  display: block;
+  border-radius: 2px;
+}
+
 @media (max-width: 600px) {
   .project-img-grid { grid-template-columns: 1fr; }
   .project-img-grid-3 { grid-template-columns: repeat(2, 1fr); }
