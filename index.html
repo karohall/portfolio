@@ -1,0 +1,894 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Karo Hall</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&family=Share+Tech&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --black: #000000;
+      --steel: #6b7280;
+      --steel-light: #9ca3af;
+      --steel-dark: #374151;
+      --blue: #0000DD;
+      --text: #e8e8e8;
+      --text-muted: #b0b0b8;
+      --border: rgba(255,255,255,0.08);
+    }
+
+    html {
+      scroll-behavior: smooth;
+      color: var(--text);
+      font-family: 'Share Tech', sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body {
+      overflow-x: hidden;
+      background: #050508;
+      min-height: 100vh;
+      color: var(--text);
+    }
+
+    ::selection { background: var(--blue); color: #fff; }
+
+    #globalRipple {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      pointer-events: none;
+      z-index: 9999;
+      mix-blend-mode: screen;
+      opacity: 0.35;
+      filter: blur(3px);
+    }
+
+    * { cursor: none !important; }
+
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 0 clamp(24px, 5vw, 80px);
+      height: 54px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(0,0,0,0.6);
+      backdrop-filter: blur(40px);
+      -webkit-backdrop-filter: blur(40px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-name {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      color: #ffffff;
+      text-decoration: none;
+      text-transform: uppercase;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 36px;
+    }
+
+    .nav-links a {
+      font-family: 'Share Tech', sans-serif;
+      font-size: 12px;
+      letter-spacing: 0.04em;
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.3s ease;
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background: var(--blue);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .nav-links a:hover::after { transform: scaleX(0.5); }
+    .nav-links a.active::after { transform: scaleX(1); }
+    .nav-links a:hover, .nav-links a.active { color: var(--text); }
+    .nav-links a.active { transform: translateY(-1px); }
+
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      position: relative;
+    }
+
+    .hero h1 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: clamp(32px, 6.5vw, 80px);
+      font-weight: 400;
+      letter-spacing: 0.06em;
+      line-height: 1.15;
+      color: var(--text);
+      margin-bottom: 24px;
+      text-transform: uppercase;
+    }
+
+    .hero-sub {
+      font-family: 'Share Tech', sans-serif;
+      font-size: clamp(13px, 1.4vw, 16px);
+      color: var(--text-muted);
+      letter-spacing: 0.015em;
+      max-width: 440px;
+      line-height: 1.65;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    section {
+      padding: clamp(80px, 10vw, 140px) clamp(24px, 8vw, 160px);
+      position: relative;
+    }
+
+    section::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.55);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    section > * { position: relative; z-index: 1; }
+
+    .section-label {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 9px;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--steel-light);
+      margin-bottom: 56px;
+    }
+
+    .about-short-inner { max-width: 580px; }
+
+    .about-short-inner h2 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: clamp(18px, 2.4vw, 26px);
+      font-weight: 400;
+      line-height: 1.5;
+      letter-spacing: 0.02em;
+      margin-bottom: 28px;
+      text-transform: uppercase;
+    }
+
+    .about-short-inner p {
+      font-size: 15px;
+      line-height: 1.9;
+      color: var(--text-muted);
+    }
+
+    .portfolio-list { display: flex; flex-direction: column; }
+
+    .portfolio-item {
+      border-bottom: 1px solid var(--border);
+      cursor: pointer;
+      overflow: hidden;
+    }
+
+    .portfolio-item:first-child { border-top: 1px solid var(--border); }
+
+    .portfolio-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 24px 0;
+      gap: 24px;
+      user-select: none;
+    }
+
+    .portfolio-header-left {
+      display: flex;
+      align-items: baseline;
+      gap: 28px;
+      min-width: 0;
+    }
+
+    .project-number {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 10px;
+      color: var(--steel-light);
+      letter-spacing: 0.06em;
+      flex-shrink: 0;
+    }
+
+    .project-name {
+      font-family: 'Orbitron', sans-serif;
+      font-size: clamp(14px, 1.8vw, 20px);
+      font-weight: 400;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      color: var(--text);
+      transition: color 0.3s ease;
+    }
+
+    .portfolio-item:hover .project-name { color: var(--blue); }
+
+    .project-type {
+      font-size: 12px;
+      color: var(--text-muted);
+      flex-shrink: 0;
+      display: none;
+    }
+
+    .toggle-icon {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 16px;
+      color: var(--steel);
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), color 0.3s ease;
+      flex-shrink: 0;
+      line-height: 1;
+    }
+
+    .portfolio-item.open .toggle-icon { transform: rotate(45deg); color: var(--blue); }
+
+    .portfolio-expand {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .portfolio-item.open .portfolio-expand { max-height: 600px; }
+
+    .portfolio-expand-inner {
+      padding: 0 0 32px 0;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 36px;
+      align-items: start;
+    }
+
+    .expand-visual {
+      width: 100%;
+      aspect-ratio: 16 / 10;
+      overflow: hidden;
+      background: rgba(8,8,12,0.6);
+      border: 1px solid var(--border);
+    }
+
+    .expand-visual canvas { width: 100%; height: 100%; display: block; }
+
+    .expand-text { padding-top: 2px; }
+
+    .expand-tag {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 9px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: 14px;
+    }
+
+    .expand-desc {
+      font-size: 14px;
+      line-height: 1.85;
+      color: var(--text-muted);
+      margin-bottom: 20px;
+    }
+
+    .expand-meta { display: flex; gap: 20px; flex-wrap: wrap; }
+
+    .expand-meta span {
+      font-size: 11px;
+      color: var(--steel-light);
+      letter-spacing: 0.04em;
+    }
+
+    .expand-meta span strong { color: var(--text); font-weight: normal; }
+
+    .about-long-inner {
+      display: grid;
+      grid-template-columns: 1.3fr 1fr;
+      gap: clamp(60px, 8vw, 140px);
+      align-items: start;
+    }
+
+    .about-long-text h2 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: clamp(16px, 2vw, 22px);
+      font-weight: 400;
+      line-height: 1.55;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      margin-bottom: 32px;
+    }
+
+    .about-long-text p {
+      font-size: 15px;
+      line-height: 1.9;
+      color: var(--text-muted);
+      margin-bottom: 20px;
+    }
+
+    .about-long-text p strong { color: var(--text); font-weight: normal; }
+
+    .philosophy-quote {
+      margin-top: 36px;
+      padding-left: 18px;
+      border-left: 1.5px solid var(--blue);
+    }
+
+    .philosophy-quote p {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 12px;
+      line-height: 1.75;
+      letter-spacing: 0.025em;
+      color: var(--text);
+      margin-bottom: 0 !important;
+    }
+
+    .skills-list { list-style: none; }
+
+    .skills-list li {
+      padding: 14px 0;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 14px;
+      color: var(--text-muted);
+      transition: color 0.3s ease;
+    }
+
+    .skills-list li:first-child { border-top: 1px solid var(--border); }
+    .skills-list li:hover { color: var(--text); }
+
+    .skills-list li span {
+      font-size: 10px;
+      color: var(--steel-light);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .contact-inner { max-width: 480px; }
+
+    .contact-inner h2 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: clamp(20px, 3vw, 34px);
+      font-weight: 400;
+      line-height: 1.35;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      margin-bottom: 44px;
+    }
+
+    .contact-inner h2 em { font-style: normal; color: var(--blue); }
+
+    .contact-links { display: flex; flex-direction: column; }
+
+    .contact-link {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 0;
+      border-bottom: 1px solid var(--border);
+      text-decoration: none;
+      color: var(--text);
+      font-size: 15px;
+      transition: color 0.3s ease, padding-left 0.3s ease;
+    }
+
+    .contact-link:first-child { border-top: 1px solid var(--border); }
+    .contact-link:hover { color: var(--blue); padding-left: 6px; }
+    .contact-link .c-arrow { font-size: 12px; transition: transform 0.3s ease; }
+    .contact-link:hover .c-arrow { transform: translateX(4px); }
+
+    footer {
+      padding: 24px clamp(24px, 8vw, 160px);
+      display: flex;
+      justify-content: space-between;
+      font-size: 10px;
+      color: var(--steel-light);
+      letter-spacing: 0.05em;
+      position: relative;
+      z-index: 1;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1),
+                  transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-d1 { transition-delay: 0.1s; }
+    .reveal-d2 { transition-delay: 0.2s; }
+    .reveal-d3 { transition-delay: 0.3s; }
+
+    @media (min-width: 700px) { .project-type { display: block; } }
+    @media (max-width: 800px) {
+      .about-long-inner { grid-template-columns: 1fr; }
+      .portfolio-expand-inner { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 480px) {
+      .nav-links { gap: 16px; }
+      .portfolio-header-left { gap: 14px; }
+    }
+  </style>
+</head>
+<body>
+
+  <canvas id="globalRipple"></canvas>
+
+  <nav>
+    <a href="#hero" class="nav-name">Karo Hall</a>
+    <div class="nav-links">
+      <a href="#about" data-section="about">About</a>
+      <a href="#portfolio" data-section="portfolio">Portfolio</a>
+      <a href="#story" data-section="story">Story</a>
+      <a href="#contact" data-section="contact">Contact</a>
+    </div>
+  </nav>
+
+  <section class="hero" id="hero">
+    <h1 class="reveal">Karo Hall</h1>
+    <p class="hero-sub reveal reveal-d1">An artist working at the intersection of movement,<br>interaction design, and digital experience.</p>
+  </section>
+
+  <section id="about">
+    <p class="section-label reveal">About</p>
+    <div class="about-short-inner">
+      <h2 class="reveal reveal-d1">Movement-driven digital craft</h2>
+      <p class="reveal reveal-d2">Digital artist and UX designer based in Oslo, shaping interfaces and experiences that feel alive — guided by rhythm, intention, and clarity. My practice bridges design studios and art institutions, bringing a choreographic sensibility to every interaction.</p>
+    </div>
+  </section>
+
+  <section id="portfolio">
+    <p class="section-label reveal">Selected Work</p>
+    <div class="portfolio-list reveal reveal-d1">
+
+      <div class="portfolio-item" data-project="0">
+        <div class="portfolio-header">
+          <div class="portfolio-header-left">
+            <span class="project-number">01</span>
+            <span class="project-name">Tidal Pulse</span>
+            <span class="project-type">Interactive Installation</span>
+          </div>
+          <span class="toggle-icon">+</span>
+        </div>
+        <div class="portfolio-expand">
+          <div class="portfolio-expand-inner">
+            <div class="expand-visual"><canvas data-project="0"></canvas></div>
+            <div class="expand-text">
+              <div class="expand-tag">Interactive Installation</div>
+              <p class="expand-desc">Real-time body-tracking installation translating audience movement into generative wave patterns. The piece explores the threshold between individual gesture and collective rhythm.</p>
+              <div class="expand-meta">
+                <span>Year — <strong>2025</strong></span>
+                <span>Venue — <strong>Kunsthall Stavanger</strong></span>
+                <span>Tech — <strong>TouchDesigner, Kinect</strong></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="portfolio-item" data-project="1">
+        <div class="portfolio-header">
+          <div class="portfolio-header-left">
+            <span class="project-number">02</span>
+            <span class="project-name">Flux Banking</span>
+            <span class="project-type">UX / Motion Design</span>
+          </div>
+          <span class="toggle-icon">+</span>
+        </div>
+        <div class="portfolio-expand">
+          <div class="portfolio-expand-inner">
+            <div class="expand-visual"><canvas data-project="1"></canvas></div>
+            <div class="expand-text">
+              <div class="expand-tag">UX / Motion Design</div>
+              <p class="expand-desc">Complete interaction design system for a Nordic fintech startup — micro-animations, transitions, and a fluid gesture-based navigation model built for clarity and trust.</p>
+              <div class="expand-meta">
+                <span>Year — <strong>2024</strong></span>
+                <span>Client — <strong>Flux Finance</strong></span>
+                <span>Role — <strong>Lead Interaction Designer</strong></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="portfolio-item" data-project="2">
+        <div class="portfolio-header">
+          <div class="portfolio-header-left">
+            <span class="project-number">03</span>
+            <span class="project-name">Residual Light</span>
+            <span class="project-type">Digital Art</span>
+          </div>
+          <span class="toggle-icon">+</span>
+        </div>
+        <div class="portfolio-expand">
+          <div class="portfolio-expand-inner">
+            <div class="expand-visual"><canvas data-project="2"></canvas></div>
+            <div class="expand-text">
+              <div class="expand-tag">Digital Art</div>
+              <p class="expand-desc">Generative artworks exploring the afterimage of movement — traces left by dancers captured via motion sensors and rendered as luminous particle fields.</p>
+              <div class="expand-meta">
+                <span>Year — <strong>2024</strong></span>
+                <span>Venue — <strong>Henie Onstad</strong></span>
+                <span>Tech — <strong>WebGL, Sensors</strong></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="portfolio-item" data-project="3">
+        <div class="portfolio-header">
+          <div class="portfolio-header-left">
+            <span class="project-number">04</span>
+            <span class="project-name">Arkiv Platform</span>
+            <span class="project-type">Web Experience</span>
+          </div>
+          <span class="toggle-icon">+</span>
+        </div>
+        <div class="portfolio-expand">
+          <div class="portfolio-expand-inner">
+            <div class="expand-visual"><canvas data-project="3"></canvas></div>
+            <div class="expand-text">
+              <div class="expand-tag">Web Experience</div>
+              <p class="expand-desc">Immersive web platform for a Scandinavian architecture collective — scroll-driven reveals, spatial audio integration, and cinematic pacing throughout.</p>
+              <div class="expand-meta">
+                <span>Year — <strong>2023</strong></span>
+                <span>Client — <strong>Arkiv Collective</strong></span>
+                <span>Role — <strong>Creative Developer</strong></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section id="story">
+    <p class="section-label reveal">Background</p>
+    <div class="about-long-inner">
+      <div class="about-long-text">
+        <h2 class="reveal reveal-d1">I think of interfaces as choreography — every scroll, tap, and transition is a gesture with intention</h2>
+        <p class="reveal reveal-d2">My path into digital design began through contemporary dance and physical theatre. After training at the Oslo National Academy of the Arts, I became fascinated with how bodies create meaning through movement — and how that logic could translate into digital space.</p>
+        <p class="reveal reveal-d2"><strong>My work spans interactive installations, UX design, generative art, and motion systems</strong> — always returning to the question of how movement communicates. I've exhibited at Henie Onstad Kunstsenter, KODE Bergen, and Ars Electronica.</p>
+        <p class="reveal reveal-d3">Currently, I split my time between client projects and artistic practice — developing tools and frameworks that bring choreographic thinking into everyday interface design.</p>
+        <div class="philosophy-quote reveal reveal-d3">
+          <p>Good motion design doesn't call attention to itself. It makes everything else feel inevitable.</p>
+        </div>
+      </div>
+      <ul class="skills-list reveal reveal-d2">
+        <li>Interaction Design <span>Primary</span></li>
+        <li>Motion & Animation <span>Primary</span></li>
+        <li>Creative Development <span>Primary</span></li>
+        <li>Generative Art <span>Practice</span></li>
+        <li>UX Research <span>Supporting</span></li>
+        <li>Spatial Computing <span>Emerging</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="contact">
+    <p class="section-label reveal">Contact</p>
+    <div class="contact-inner">
+      <h2 class="reveal reveal-d1">Let's make<br>something <em>move</em></h2>
+      <div class="contact-links reveal reveal-d2">
+        <a href="#" class="contact-link">Email <span class="c-arrow">→</span></a>
+        <a href="#" class="contact-link">LinkedIn <span class="c-arrow">→</span></a>
+        <a href="#" class="contact-link">Instagram <span class="c-arrow">→</span></a>
+        <a href="#" class="contact-link">Are.na <span class="c-arrow">→</span></a>
+        <a href="#" class="contact-link">Read.cv <span class="c-arrow">→</span></a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <span>© 2026 Karo Hall</span>
+    <span>Oslo, Norway</span>
+  </footer>
+
+  <script>
+    // ── WATER RIPPLE SIMULATION ──
+    (() => {
+      const canvas = document.getElementById('globalRipple');
+      const ctx = canvas.getContext('2d');
+      const SCALE = 3;
+      const DAMP = 0.991;
+      let w, h, buf0, buf1, buf2, imgData;
+
+      function resize() {
+        w = Math.ceil(window.innerWidth / SCALE);
+        h = Math.ceil(window.innerHeight / SCALE);
+        canvas.width = w;
+        canvas.height = h;
+        canvas.style.width = window.innerWidth + 'px';
+        canvas.style.height = window.innerHeight + 'px';
+        buf0 = new Float32Array(w * h);
+        buf1 = new Float32Array(w * h);
+        buf2 = new Float32Array(w * h);
+        imgData = ctx.createImageData(w, h);
+      }
+      resize();
+      window.addEventListener('resize', resize);
+
+      function drop(cx, cy, strength, radius) {
+        const gx = (cx / SCALE) | 0;
+        const gy = (cy / SCALE) | 0;
+        const r = Math.ceil(radius / SCALE);
+        for (let dy = -r; dy <= r; dy++) {
+          for (let dx = -r; dx <= r; dx++) {
+            const px = gx + dx, py = gy + dy;
+            if (px < 1 || px >= w - 1 || py < 1 || py >= h - 1) continue;
+            const d = Math.sqrt(dx * dx + dy * dy) / r;
+            if (d > 1) continue;
+            buf0[py * w + px] += strength * (1 - d * d);
+          }
+        }
+      }
+
+      // Echo system — schedule delayed repeat drops that fade
+      const echoes = [];
+      function dropWithEcho(cx, cy, strength, radius, echoCount, echoDelay) {
+        drop(cx, cy, strength, radius);
+        for (let i = 1; i <= echoCount; i++) {
+          echoes.push({
+            x: cx, y: cy,
+            strength: strength * Math.pow(0.4, i),
+            radius: radius + i * 6,
+            time: performance.now() + echoDelay * i
+          });
+        }
+      }
+
+      function processEchoes() {
+        const now = performance.now();
+        for (let i = echoes.length - 1; i >= 0; i--) {
+          if (now >= echoes[i].time) {
+            const e = echoes[i];
+            drop(e.x, e.y, e.strength, e.radius);
+            echoes.splice(i, 1);
+          }
+        }
+      }
+
+      // Fire on every mousemove with segment interpolation — no throttle, no gates
+      let lastX = -1, lastY = -1;
+      window.addEventListener('mousemove', e => {
+        const cx = e.clientX, cy = e.clientY;
+        if (lastX < 0) { lastX = cx; lastY = cy; }
+        const dx = cx - lastX, dy = cy - lastY;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        const steps = Math.max(1, Math.ceil(dist / 8));
+        for (let s = 0; s <= steps; s++) {
+          const f = s / steps;
+          dropWithEcho(lastX + dx * f, lastY + dy * f, 30, 22, 2, 180);
+        }
+        lastX = cx; lastY = cy;
+      }, { passive: true });
+
+      window.addEventListener('click', e => {
+        dropWithEcho(e.clientX, e.clientY, 80, 35, 3, 250);
+      });
+
+      let hidden = false;
+      document.addEventListener('visibilitychange', () => {
+        hidden = document.hidden;
+        if (!hidden) requestAnimationFrame(frame);
+      });
+
+      function frame() {
+        if (hidden) return;
+
+        // Process pending echo drops
+        processEchoes();
+
+        // Step simulation every frame
+        for (let y = 1; y < h - 1; y++) {
+          const row = y * w;
+          for (let x = 1; x < w - 1; x++) {
+            const i = row + x;
+            buf2[i] = ((buf1[i-1] + buf1[i+1] + buf1[i-w] + buf1[i+w]) * 0.5 - buf0[i]) * DAMP;
+          }
+        }
+        const tmp = buf0; buf0 = buf1; buf1 = buf2; buf2 = tmp;
+
+
+        // Render height field as blue-tinted overlay
+        const data = imgData.data;
+        for (let i = 0, len = w * h; i < len; i++) {
+          const pi = i << 2;
+          const val = buf1[i];
+          const abs = val < 0 ? -val : val;
+          if (abs < 0.25) {
+            data[pi] = 0; data[pi+1] = 0; data[pi+2] = 0; data[pi+3] = 0;
+            continue;
+          }
+          const t = Math.min(abs * 0.018, 1);
+          const t2 = t * t;
+          if (val > 0) {
+            data[pi]   = (t2 * 10)       | 0;
+            data[pi+1] = (t2 * 30)       | 0;
+            data[pi+2] = (30 + t2 * 180) | 0;
+            data[pi+3] = (15 + t2 * 140) | 0;
+          } else {
+            data[pi]   = 0;
+            data[pi+1] = (t2 * 10)       | 0;
+            data[pi+2] = (15 + t2 * 120) | 0;
+            data[pi+3] = (10 + t2 * 110) | 0;
+          }
+        }
+        ctx.putImageData(imgData, 0, 0);
+        requestAnimationFrame(frame);
+      }
+
+      requestAnimationFrame(frame);
+
+      // Cursor dot
+      const dotCanvas = document.createElement('canvas');
+      dotCanvas.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:10000;';
+      document.body.appendChild(dotCanvas);
+      const dctx = dotCanvas.getContext('2d');
+      function resizeDot() {
+        const dpr = Math.min(devicePixelRatio, 2);
+        dotCanvas.width = window.innerWidth * dpr;
+        dotCanvas.height = window.innerHeight * dpr;
+        dotCanvas.style.width = window.innerWidth + 'px';
+        dotCanvas.style.height = window.innerHeight + 'px';
+        dctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      }
+      resizeDot();
+      window.addEventListener('resize', resizeDot);
+
+      let dotX = -99, dotY = -99;
+      window.addEventListener('mousemove', e => { dotX = e.clientX; dotY = e.clientY; }, { passive: true });
+
+      function drawDot(t) {
+        dctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
+        if (dotX > 0) {
+          const pulse = 1 + Math.sin(t * 0.003) * 0.06;
+          dctx.globalAlpha = 0.03;
+          dctx.fillStyle = '#0000DD';
+          dctx.beginPath();
+          dctx.arc(dotX, dotY, 22 * pulse, 0, Math.PI * 2);
+          dctx.fill();
+          dctx.globalAlpha = 0.18;
+          dctx.fillStyle = '#4466FF';
+          dctx.beginPath();
+          dctx.arc(dotX, dotY, 2.5 * pulse, 0, Math.PI * 2);
+          dctx.fill();
+          dctx.globalAlpha = 0.5;
+          dctx.fillStyle = '#aabbff';
+          dctx.beginPath();
+          dctx.arc(dotX, dotY, 1, 0, Math.PI * 2);
+          dctx.fill();
+          dctx.globalAlpha = 1;
+        }
+        requestAnimationFrame(drawDot);
+      }
+      requestAnimationFrame(drawDot);
+    })();
+
+    // ── NAV SCROLL ──
+    document.querySelectorAll('.nav-links a, .nav-name').forEach(link => {
+      link.addEventListener('click', e => {
+        const href = link.getAttribute('href');
+        if (!href || !href.startsWith('#')) return;
+        const target = document.querySelector(href);
+        if (!target) return;
+        e.preventDefault();
+        const navH = document.querySelector('nav').offsetHeight;
+        const top = target.getBoundingClientRect().top + window.scrollY - navH - 12;
+        window.scrollTo({ top, behavior: 'smooth' });
+      });
+    });
+
+    // ── NAV ACTIVE ──
+    const navLinks = document.querySelectorAll('.nav-links a');
+    const sections = document.querySelectorAll('section[id]');
+    window.addEventListener('scroll', () => {
+      let current = '';
+      sections.forEach(s => { if (window.scrollY >= s.offsetTop - 140) current = s.id; });
+      navLinks.forEach(a => a.classList.toggle('active', a.dataset.section === current));
+    });
+
+    // ── REVEAL ──
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
+    document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+    // ── PORTFOLIO EXPAND ──
+    document.querySelectorAll('.portfolio-item').forEach(item => {
+      item.querySelector('.portfolio-header').addEventListener('click', () => {
+        const isOpen = item.classList.contains('open');
+        item.classList.toggle('open');
+        const c = item.querySelector('.expand-visual canvas');
+        if (c) { c.__stop = isOpen; if (!isOpen) initProjectCanvas(c); }
+      });
+    });
+
+    // ── PROJECT CANVASES ──
+    function initProjectCanvas(canvas) {
+      if (canvas.__running) return;
+      canvas.__running = true;
+      const ctx = canvas.getContext('2d');
+      const idx = parseInt(canvas.dataset.project);
+      let cw, ch;
+      function resize() {
+        const d = Math.min(devicePixelRatio, 1.5);
+        const rect = canvas.parentElement.getBoundingClientRect();
+        cw = rect.width; ch = rect.height;
+        canvas.width = cw * d; canvas.height = ch * d;
+        ctx.setTransform(d, 0, 0, d, 0, 0);
+      }
+      resize();
+      function draw(t) {
+        if (canvas.__stop) { canvas.__running = false; return; }
+        ctx.clearRect(0, 0, cw, ch);
+        ctx.fillStyle = 'rgba(8,8,12,0.6)';
+        ctx.fillRect(0, 0, cw, ch);
+        if (idx === 0) {
+          for (let row = 0; row < 14; row++) {
+            ctx.beginPath();
+            for (let x = 0; x <= cw; x += 3) {
+              const y = ch * 0.28 + row * (ch * 0.035) + Math.sin(x * 0.008 + t * 0.0008 + row * 0.5) * (12 + row * 1.2);
+              x === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+            }
+            ctx.strokeStyle = `rgba(0,0,221,${0.08 + row * 0.018})`;
+            ctx.lineWidth = 0.7; ctx.stroke();
+          }
+        } else if (idx === 1) {
+          const cols = 10, rows = 6, gw = cw / cols, gh = ch / rows;
+          for (let r = 0; r < rows; r++) for (let c = 0; c < cols; c++) {
+            const cx2 = gw*(c+0.5), cy2 = gh*(r+0.5);
+            const pulse = Math.sin(t*0.002 + c*0.4 + r*0.6);
+            ctx.beginPath(); ctx.arc(cx2, cy2, 1.8 + pulse*1.2, 0, Math.PI*2);
+            ctx.fillStyle = `rgba(0,0,221,${0.18 + pulse*0.12})`; ctx.fill();
+          }
+        } else if (idx === 2) {
+          const count = 45;
+          for (let i = 0; i < count; i++) {
+            const angle = (i/count)*Math.PI*2 + t*0.0003;
+            const r1 = cw*0.14 + Math.sin(t*0.001 + i*0.3)*cw*0.05;
+            const cx2 = cw*0.5 + Math.cos(angle)*r1, cy2 = ch*0.5 + Math.sin(angle)*r1*0.7;
+            ctx.beginPath(); ctx.arc(cx2, cy2, 1.2, 0, Math.PI*2);
+            ctx.fillStyle = `rgba(0,0,221,${0.25 + Math.sin(i + t*0.001)*0.15})`; ctx.fill();
+          }
+        } else {
+          for (let i = 0; i < 20; i++) {
+            const p = i/20, x1 = cw*p;
+            const x2 = x1 + Math.sin(t*0.001 + i*0.4)*24;
+            ctx.beginPath(); ctx.moveTo(x1, 0); ctx.quadraticCurveTo(x2, ch*0.5, x1, ch);
+            ctx.strokeStyle = `rgba(0,0,221,${0.05 + Math.sin(t*0.0015 + i*0.5)*0.035})`;
+            ctx.lineWidth = 0.7; ctx.stroke();
+          }
+        }
+        requestAnimationFrame(draw);
+      }
+      requestAnimationFrame(draw);
+      new ResizeObserver(resize).observe(canvas.parentElement);
+    }
+  </script>
+</body>
+</html>
