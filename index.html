@@ -187,6 +187,120 @@
 
     .portfolio-list { display: flex; flex-direction: column; }
 
+    .resume-toggle {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: transparent;
+      border: none;
+      border-top: 1px solid var(--border);
+      padding: 18px 0;
+      margin-top: 28px;
+      width: 100%;
+      cursor: pointer;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 9px;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      transition: color 0.2s;
+    }
+
+    .resume-toggle:hover { color: var(--text); }
+
+    .resume-toggle-icon {
+      font-size: 14px;
+      line-height: 1;
+      transition: transform 0.3s cubic-bezier(0.16,1,0.3,1);
+    }
+
+    .resume-toggle.open .resume-toggle-icon { transform: rotate(45deg); }
+
+    .resume-drawer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.45s cubic-bezier(0.16,1,0.3,1);
+    }
+
+    .resume-drawer-inner {
+      padding: 8px 0 32px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+    }
+
+    .resume-section h3 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 8px;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--steel-light);
+      margin-bottom: 18px;
+    }
+
+    .resume-section ul {
+      list-style: none;
+    }
+
+    .resume-section ul li {
+      font-size: 13px;
+      line-height: 1.7;
+      color: var(--text-muted);
+      padding: 9px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .resume-section ul li:first-child { border-top: 1px solid var(--border); }
+
+    .resume-section ul li strong {
+      display: block;
+      color: var(--text);
+      font-weight: normal;
+    }
+
+    @media (max-width: 600px) {
+      .resume-drawer-inner { grid-template-columns: 1fr; }
+    }
+
+    .portfolio-filters {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 40px;
+    }
+
+    .filter-btn {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 9px;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      background: transparent;
+      border: 1px solid var(--border);
+      border-radius: 2px;
+      padding: 8px 16px;
+      cursor: pointer;
+      transition: color 0.2s, border-color 0.2s, background 0.2s;
+    }
+
+    .filter-btn:hover {
+      color: var(--text);
+      border-color: rgba(255,255,255,0.2);
+    }
+
+    .filter-btn.active {
+      color: #000;
+      background: var(--text);
+      border-color: var(--text);
+    }
+
+    .portfolio-item.hidden {
+      display: none;
+    }
+
     .portfolio-item {
       border-bottom: 1px solid var(--border);
       cursor: pointer;
@@ -502,16 +616,23 @@
   <section id="about">
     <p class="section-label reveal">About</p>
     <div class="about-short-inner">
-      <h2 class="reveal reveal-d1">Moving at the threshold between physical presence and digital interaction</h2>
-      <p class="reveal reveal-d2">With roots in dance and performance, I bring spatial awareness and embodied cognition into digital design. Beyond functionality, I'm curious whether systems respect how people move and make sense of space. My process is iterative and collaborative, drawing upon experience and research from both past and presence. I'm most engaged when working across disciplines, translating between artists and engineers, museums and startups, analogue and digital. The best work happens in the spaces between.</p>
+      <h2 class="reveal reveal-d1">Interaction designer, mover, digital creative</h2>
+      <p class="reveal reveal-d2">I have an unusual background: performance and dance training, an MA in art history, hands-on work in XR, generative art, and UX/UI design. It all feeds the same curiosity.</p>
     </div>
   </section>
 
   <section id="portfolio">
     <p class="section-label reveal">Selected Work</p>
+    <div class="portfolio-filters reveal reveal-d1">
+      <button class="filter-btn active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="xr">XR & Installation</button>
+      <button class="filter-btn" data-filter="ux">UX/UI Design</button>
+      <button class="filter-btn" data-filter="art">Digital Art</button>
+    </div>
+
     <div class="portfolio-list reveal reveal-d1">
 
-      <div class="portfolio-item" data-project="0">
+      <div class="portfolio-item" data-project="0" data-category="xr">
         <div class="portfolio-header">
           <div class="portfolio-header-left">
             <span class="project-number">01</span>
@@ -534,7 +655,7 @@
         </div>
       </div>
 
-      <div class="portfolio-item" data-project="1">
+      <div class="portfolio-item" data-project="1" data-category="xr">
         <div class="portfolio-header">
           <div class="portfolio-header-left">
             <span class="project-number">02</span>
@@ -560,7 +681,7 @@
         </div>
       </div>
 
-      <div class="portfolio-item" data-project="2">
+      <div class="portfolio-item" data-project="2" data-category="ux">
         <div class="portfolio-header">
           <div class="portfolio-header-left">
             <span class="project-number">03</span>
@@ -586,7 +707,7 @@
         </div>
       </div>
 
-      <div class="portfolio-item" data-project="3">
+      <div class="portfolio-item" data-project="3" data-category="xr">
         <div class="portfolio-header">
           <div class="portfolio-header-left">
             <span class="project-number">04</span>
@@ -610,7 +731,7 @@
         </div>
       </div>
 
-      <div class="portfolio-item" data-project="4">
+      <div class="portfolio-item" data-project="4" data-category="art">
         <div class="portfolio-header">
           <div class="portfolio-header-left">
             <span class="project-number">05</span>
@@ -636,7 +757,7 @@
         </div>
       </div>
 
-      <div class="portfolio-item" data-project="5">
+      <div class="portfolio-item" data-project="5" data-category="xr">
         <div class="portfolio-header">
           <div class="portfolio-header-left">
             <span class="project-number">06</span>
@@ -662,7 +783,7 @@
         </div>
       </div>
 
-      <div class="portfolio-item" data-project="6">
+      <div class="portfolio-item" data-project="6" data-category="art">
         <div class="portfolio-header">
           <div class="portfolio-header-left">
             <span class="project-number">07</span>
@@ -673,7 +794,7 @@
         </div>
         <div class="portfolio-expand">
           <div class="portfolio-expand-inner">
-            <div class="expand-visual"><img src="images/portfolio-lola420.png" alt="lola420 x johndoe887"></div>
+            <div class="expand-visual"><img src="images/portfolio-lola420-johndoe887.png" alt="lola420 x johndoe887"></div>
             <div class="expand-text">
               <div class="expand-tag">Digital Art</div>
               <p class="expand-desc">An installation examining digital identity and avatar-mediated connection. Staged as a screenplay between two usernames, visitors physically sorted through manila folders of fragmented conversations — piecing together digital traces as a tactile act. Part of Unicode Camgirl by Amanda Widegren.</p>
@@ -698,15 +819,38 @@
         <h2 class="reveal reveal-d1">I move at the threshold between physical presence and digital interaction.</h2>
         <p class="reveal reveal-d2">My earliest memories of digital space are reading cyberpunk classics and watching sci-fi, Blade Runner was a big one. As I grew older I was obsessed with games like Portal, exploring spatiality and emergent narratives within virtual worlds. Now I design those systems in addition to inhabiting them.</p>
         <p class="reveal reveal-d3">With roots in dance and performance, I bring spatial awareness and embodied cognition into digital design. My work spans UX design, XR installation, generative art, and brand systems in collaboration with artists, engineers, museums, and startups. I'm always asking how the container respects the human body moving through it, curious how space shapes movement and vice versa.</p>
+        <div class="philosophy-quote reveal">
+          <p>The best work happens in the spaces between.</p>
+        </div>
       </div>
-      <ul class="skills-list reveal reveal-d2">
-        <li>UX / UI Design <span>Primary</span></li>
-        <li>Interaction Design <span>Primary</span></li>
-        <li>Creative Direction <span>Primary</span></li>
-        <li>XR &amp; Installation Art <span>Practice</span></li>
-        <li>Generative Art <span>Practice</span></li>
-        <li>Brand Design <span>Supporting</span></li>
-      </ul>
+    </div>
+    <button class="resume-toggle reveal" id="resumeToggle">
+      <span class="resume-toggle-icon">+</span>
+      Resume
+    </button>
+    <div class="resume-drawer" id="resumeDrawer">
+      <div class="resume-drawer-inner">
+        <div class="resume-section">
+          <h3>Education</h3>
+          <ul>
+            <li><strong>Workshop as format and artistic method</strong> SKH, 2026</li>
+            <li><strong>UX Upskill</strong> Hyper Island, 2025–2026</li>
+            <li><strong>Dipl. Medical Massage Therapist</strong> Axelsons Institute, 2024</li>
+            <li><strong>MA Art History (digital focus)</strong> Uppsala University, 2021</li>
+            <li><strong>BA Aesthetics & Art History</strong> Uppsala University, 2019</li>
+            <li><strong>Dance training — contemporary dance & ballet</strong> NECD & Iwanson International, 2013–2015</li>
+          </ul>
+        </div>
+        <div class="resume-section">
+          <h3>Teaching & Curatorial Practice (selected)</h3>
+          <ul>
+            <li><strong>Spaceholder and guide</strong> Museum Andetag, 2025–2026</li>
+            <li><strong>Course lead — Art History & Cultural Entrepreneurship</strong> Uppsala University, 2022–2025</li>
+            <li><strong>Art educator</strong> Moderna Museet, Uppsala Konstmuseum & others, 2022–2024</li>
+            <li><strong>Assistant curator</strong> Ljungbergmuseet, 2019–2021</li>
+          </ul>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -716,6 +860,8 @@
       <h2 class="reveal reveal-d1">Let's make<br>something <em>move</em></h2>
       <div class="contact-links reveal reveal-d2">
         <a href="mailto:hello@karohall.com" class="contact-link">hello@karohall.com <span class="c-arrow">→</span></a>
+        <a href="https://www.instagram.com/karohall.01" target="_blank" rel="noopener" class="contact-link">Instagram <span class="c-arrow">→</span></a>
+        <a href="https://www.linkedin.com/in/karo-hallencreutz/" target="_blank" rel="noopener" class="contact-link">LinkedIn <span class="c-arrow">→</span></a>
       </div>
     </div>
   </section>
@@ -857,6 +1003,34 @@
       requestAnimationFrame(draw);
       new ResizeObserver(resize).observe(canvas.parentElement);
     }
+  </script>
+  <script>
+    const resumeToggle = document.getElementById('resumeToggle');
+    const resumeDrawer = document.getElementById('resumeDrawer');
+    resumeToggle.addEventListener('click', () => {
+      const open = resumeToggle.classList.toggle('open');
+      resumeDrawer.style.maxHeight = open ? resumeDrawer.scrollHeight + 'px' : null;
+    });
+
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const filter = btn.dataset.filter;
+        document.querySelectorAll('.portfolio-item').forEach(item => {
+          if (filter === 'all' || item.dataset.category === filter) {
+            item.classList.remove('hidden');
+          } else {
+            item.classList.add('hidden');
+            item.classList.remove('open');
+            const expand = item.querySelector('.portfolio-expand');
+            const icon = item.querySelector('.toggle-icon');
+            if (expand) expand.style.maxHeight = null;
+            if (icon) icon.textContent = '+';
+          }
+        });
+      });
+    });
   </script>
   <script src="ripple.js"></script>
 </body>
