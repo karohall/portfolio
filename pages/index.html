@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Karo Hall</title>
+  <title>Karolina Hallencreutz</title>
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&family=Share+Tech&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
@@ -24,6 +24,7 @@
       color: var(--text);
       font-family: 'Share Tech', sans-serif;
       -webkit-font-smoothing: antialiased;
+      background: #050508;
     }
 
     body {
@@ -171,7 +172,7 @@
     .about-short-inner h2 {
       font-family: 'Orbitron', sans-serif;
       font-size: clamp(18px, 2.4vw, 26px);
-      font-weight: 400;
+      font-weight: 500;
       line-height: 1.5;
       letter-spacing: 0.02em;
       margin-bottom: 28px;
@@ -302,6 +303,21 @@
 
     .expand-meta span strong { color: var(--text); font-weight: normal; }
 
+    .expand-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 20px;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--blue);
+      text-decoration: none;
+      transition: gap 0.3s ease, opacity 0.3s ease;
+    }
+    .expand-link:hover { gap: 14px; opacity: 0.8; }
+
     .about-long-inner {
       display: grid;
       grid-template-columns: 1.3fr 1fr;
@@ -312,7 +328,7 @@
     .about-long-text h2 {
       font-family: 'Orbitron', sans-serif;
       font-size: clamp(16px, 2vw, 22px);
-      font-weight: 400;
+      font-weight: 500;
       line-height: 1.55;
       letter-spacing: 0.02em;
       text-transform: uppercase;
@@ -422,13 +438,44 @@
     .reveal-d3 { transition-delay: 0.3s; }
 
     @media (min-width: 700px) { .project-type { display: block; } }
+
     @media (max-width: 800px) {
       .about-long-inner { grid-template-columns: 1fr; }
       .portfolio-expand-inner { grid-template-columns: 1fr; }
     }
+
+    /* Tablet / half-window */
+    @media (max-width: 680px) {
+      nav { padding: 0 20px; }
+      .nav-links { gap: 20px; }
+      .nav-links a { font-size: 11px; }
+      .nav-name { font-size: 10px; letter-spacing: 0.06em; }
+
+      .hero h1 { font-size: clamp(28px, 9vw, 52px); }
+
+      section { padding: clamp(56px, 8vw, 100px) 20px; }
+
+      .about-short-inner h2 { font-size: clamp(16px, 4vw, 22px); }
+
+      .portfolio-header { padding: 18px 0; }
+      .project-name { font-size: clamp(13px, 3.5vw, 18px); }
+
+      .contact-inner h2 { font-size: clamp(18px, 5vw, 28px); }
+
+      footer { padding: 20px; flex-direction: column; gap: 6px; }
+    }
+
+    /* Mobile */
     @media (max-width: 480px) {
-      .nav-links { gap: 16px; }
-      .portfolio-header-left { gap: 14px; }
+      .nav-links { gap: 14px; }
+      .nav-links a { font-size: 10px; letter-spacing: 0.02em; }
+      .portfolio-header-left { gap: 12px; }
+      .expand-meta { gap: 12px; }
+    }
+
+    /* Very narrow — hide nav links, name only */
+    @media (max-width: 380px) {
+      .nav-links { display: none; }
     }
   </style>
 </head>
@@ -437,7 +484,7 @@
   <canvas id="globalRipple"></canvas>
 
   <nav>
-    <a href="#hero" class="nav-name">Karo Hall</a>
+    <a href="#hero" class="nav-name">Karolina Hallencreutz</a>
     <div class="nav-links">
       <a href="#about" data-section="about">About</a>
       <a href="#portfolio" data-section="portfolio">Portfolio</a>
@@ -448,14 +495,14 @@
 
   <section class="hero" id="hero">
     <h1 class="reveal">Karo Hall</h1>
-    <p class="hero-sub reveal reveal-d1">An artist working at the intersection of movement,<br>interaction design, and digital experience.</p>
+    <p class="hero-sub reveal reveal-d1">Bridging experiences between digital and physical space. Based in Stockholm, working at the intersection of embodiment and technology.</p>
   </section>
 
   <section id="about">
     <p class="section-label reveal">About</p>
     <div class="about-short-inner">
-      <h2 class="reveal reveal-d1">Movement-driven digital craft</h2>
-      <p class="reveal reveal-d2">Digital artist and UX designer based in Oslo, shaping interfaces and experiences that feel alive — guided by rhythm, intention, and clarity. My practice bridges design studios and art institutions, bringing a choreographic sensibility to every interaction.</p>
+      <h2 class="reveal reveal-d1">Moving at the threshold between physical presence and digital interaction</h2>
+      <p class="reveal reveal-d2">UX designer and digital creative based in Stockholm, working at the intersection of embodiment and technology. My practice bridges design studios, art institutions, and independent artistic research — bringing spatial awareness and a choreographic sensibility to every experience I build.</p>
     </div>
   </section>
 
@@ -467,8 +514,8 @@
         <div class="portfolio-header">
           <div class="portfolio-header-left">
             <span class="project-number">01</span>
-            <span class="project-name">Tidal Pulse</span>
-            <span class="project-type">Interactive Installation</span>
+            <span class="project-name">Body of Work</span>
+            <span class="project-type">Coming Soon</span>
           </div>
           <span class="toggle-icon">+</span>
         </div>
@@ -476,12 +523,10 @@
           <div class="portfolio-expand-inner">
             <div class="expand-visual"><canvas data-project="0"></canvas></div>
             <div class="expand-text">
-              <div class="expand-tag">Interactive Installation</div>
-              <p class="expand-desc">Real-time body-tracking installation translating audience movement into generative wave patterns. The piece explores the threshold between individual gesture and collective rhythm.</p>
+              <div class="expand-tag">Coming Soon</div>
+              <p class="expand-desc">Details to follow.</p>
               <div class="expand-meta">
-                <span>Year — <strong>2025</strong></span>
-                <span>Venue — <strong>Kunsthall Stavanger</strong></span>
-                <span>Tech — <strong>TouchDesigner, Kinect</strong></span>
+                <span>Year — <strong>TBD</strong></span>
               </div>
             </div>
           </div>
@@ -492,8 +537,8 @@
         <div class="portfolio-header">
           <div class="portfolio-header-left">
             <span class="project-number">02</span>
-            <span class="project-name">Flux Banking</span>
-            <span class="project-type">UX / Motion Design</span>
+            <span class="project-name">Archaeology of Touch</span>
+            <span class="project-type">Exposition / Digital Art</span>
           </div>
           <span class="toggle-icon">+</span>
         </div>
@@ -501,13 +546,14 @@
           <div class="portfolio-expand-inner">
             <div class="expand-visual"><canvas data-project="1"></canvas></div>
             <div class="expand-text">
-              <div class="expand-tag">UX / Motion Design</div>
-              <p class="expand-desc">Complete interaction design system for a Nordic fintech startup — micro-animations, transitions, and a fluid gesture-based navigation model built for clarity and trust.</p>
+              <div class="expand-tag">Exposition / Digital Art</div>
+              <p class="expand-desc">An interactive 3D gallery exploring touch as an empirical method and artistic practice. Visitors physically interact with digital objects to investigate tactile intelligence beyond verbal and cognitive modes — gathering four works on touch's absence from contemporary art institutions.</p>
               <div class="expand-meta">
-                <span>Year — <strong>2024</strong></span>
-                <span>Client — <strong>Flux Finance</strong></span>
-                <span>Role — <strong>Lead Interaction Designer</strong></span>
+                <span>Year — <strong>2026</strong></span>
+                <span>Role — <strong>Digital Artist</strong></span>
+                <span>Tools — <strong>Spline, Flux AI, HTML/CSS</strong></span>
               </div>
+              <a href="archaeology-of-touch.html" class="expand-link">View full project →</a>
             </div>
           </div>
         </div>
@@ -517,8 +563,8 @@
         <div class="portfolio-header">
           <div class="portfolio-header-left">
             <span class="project-number">03</span>
-            <span class="project-name">Residual Light</span>
-            <span class="project-type">Digital Art</span>
+            <span class="project-name">GYST</span>
+            <span class="project-type">UX / UI Design</span>
           </div>
           <span class="toggle-icon">+</span>
         </div>
@@ -526,13 +572,14 @@
           <div class="portfolio-expand-inner">
             <div class="expand-visual"><canvas data-project="2"></canvas></div>
             <div class="expand-text">
-              <div class="expand-tag">Digital Art</div>
-              <p class="expand-desc">Generative artworks exploring the afterimage of movement — traces left by dancers captured via motion sensors and rendered as luminous particle fields.</p>
+              <div class="expand-tag">UX / UI Design</div>
+              <p class="expand-desc">Redesigning onboarding for an AI-powered revenue intelligence tool for elite content creators. The challenge: translating complex business analytics into plain language that builds emotional trust with users intimidated by data.</p>
               <div class="expand-meta">
-                <span>Year — <strong>2024</strong></span>
-                <span>Venue — <strong>Henie Onstad</strong></span>
-                <span>Tech — <strong>WebGL, Sensors</strong></span>
+                <span>Year — <strong>2026</strong></span>
+                <span>Role — <strong>UX/UI Design</strong></span>
+                <span>Tools — <strong>Figma, ProtoPie</strong></span>
               </div>
+              <a href="gyst.html" class="expand-link">View full project →</a>
             </div>
           </div>
         </div>
@@ -542,8 +589,8 @@
         <div class="portfolio-header">
           <div class="portfolio-header-left">
             <span class="project-number">04</span>
-            <span class="project-name">Arkiv Platform</span>
-            <span class="project-type">Web Experience</span>
+            <span class="project-name">ASS2ROID</span>
+            <span class="project-type">Art Direction</span>
           </div>
           <span class="toggle-icon">+</span>
         </div>
@@ -551,13 +598,66 @@
           <div class="portfolio-expand-inner">
             <div class="expand-visual"><canvas data-project="3"></canvas></div>
             <div class="expand-text">
-              <div class="expand-tag">Web Experience</div>
-              <p class="expand-desc">Immersive web platform for a Scandinavian architecture collective — scroll-driven reveals, spatial audio integration, and cinematic pacing throughout.</p>
+              <div class="expand-tag">Art Direction</div>
+              <p class="expand-desc">A theme camp concept for The Borderland festival — two prospectors running a mining operation on the fictional asteroid Korova Rock. Cinematic trailer, movie posters, ad campaigns, guidebook, comic strips, and a physical rover bar installation. Pulpy 1980s sci-fi aesthetics, deliberately hand-made over polished AI.</p>
               <div class="expand-meta">
-                <span>Year — <strong>2023</strong></span>
-                <span>Client — <strong>Arkiv Collective</strong></span>
-                <span>Role — <strong>Creative Developer</strong></span>
+                <span>Year — <strong>2026</strong></span>
+                <span>Venue — <strong>The Borderland</strong></span>
+                <span>Tools — <strong>Midjourney, Adobe CC</strong></span>
               </div>
+              <a href="ass2roid.html" class="expand-link">View full project →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="portfolio-item" data-project="4">
+        <div class="portfolio-header">
+          <div class="portfolio-header-left">
+            <span class="project-number">05</span>
+            <span class="project-name">GHOSTED</span>
+            <span class="project-type">XR Installation</span>
+          </div>
+          <span class="toggle-icon">+</span>
+        </div>
+        <div class="portfolio-expand">
+          <div class="portfolio-expand-inner">
+            <div class="expand-visual"><canvas data-project="4"></canvas></div>
+            <div class="expand-text">
+              <div class="expand-tag">XR Installation (WiP)</div>
+              <p class="expand-desc">An XR installation exploring intimacy and echo in virtual worlds, part of the larger project Metaphysical Archeology. A 3×2m plywood wall with laser-cut acrylic details in a forest glade — accessed via QR code, AR reveals fragmented lost digital conversations as viewers move through space.</p>
+              <div class="expand-meta">
+                <span>Year — <strong>2026</strong></span>
+                <span>Role — <strong>Digital Artist</strong></span>
+                <span>Tools — <strong>Unity, AR Foundation, Leonardo AI</strong></span>
+              </div>
+              <a href="ghosted.html" class="expand-link">View full project →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="portfolio-item" data-project="5">
+        <div class="portfolio-header">
+          <div class="portfolio-header-left">
+            <span class="project-number">06</span>
+            <span class="project-name">lola420 x johndoe887 // (a) screen play //</span>
+            <span class="project-type">Digital Art</span>
+          </div>
+          <span class="toggle-icon">+</span>
+        </div>
+        <div class="portfolio-expand">
+          <div class="portfolio-expand-inner">
+            <div class="expand-visual"><canvas data-project="5"></canvas></div>
+            <div class="expand-text">
+              <div class="expand-tag">Digital Art</div>
+              <p class="expand-desc">An installation examining digital identity and avatar-mediated connection. Staged as a screenplay between two usernames, visitors physically sorted through manila folders of fragmented conversations — piecing together digital traces as a tactile act. Part of Unicode Camgirl by Amanda Widegren.</p>
+              <div class="expand-meta">
+                <span>Year — <strong>2025</strong></span>
+                <span>Venue — <strong>Borderland 2025</strong></span>
+                <span>Tools — <strong>Figma, Photoshop</strong></span>
+              </div>
+              <a href="a-screen-play.html" class="expand-link">View full project →</a>
             </div>
           </div>
         </div>
@@ -570,21 +670,21 @@
     <p class="section-label reveal">Background</p>
     <div class="about-long-inner">
       <div class="about-long-text">
-        <h2 class="reveal reveal-d1">I think of interfaces as choreography — every scroll, tap, and transition is a gesture with intention</h2>
-        <p class="reveal reveal-d2">My path into digital design began through contemporary dance and physical theatre. After training at the Oslo National Academy of the Arts, I became fascinated with how bodies create meaning through movement — and how that logic could translate into digital space.</p>
-        <p class="reveal reveal-d2"><strong>My work spans interactive installations, UX design, generative art, and motion systems</strong> — always returning to the question of how movement communicates. I've exhibited at Henie Onstad Kunstsenter, KODE Bergen, and Ars Electronica.</p>
-        <p class="reveal reveal-d3">Currently, I split my time between client projects and artistic practice — developing tools and frameworks that bring choreographic thinking into everyday interface design.</p>
+        <h2 class="reveal reveal-d1">I move at the threshold between physical presence and digital interaction — where embodied cognition shapes the interface</h2>
+        <p class="reveal reveal-d2">My path into design began through dance and performance. A background in movement gave me a framework for understanding how bodies navigate space, interpret signals, and create meaning — and I've spent years translating that logic into digital experience.</p>
+        <p class="reveal reveal-d2"><strong>Cyberpunk literature, sci-fi, and early gaming shaped my sensibility</strong> — from Ursula K. Le Guin to Portal, I've always been drawn to systems that reward curiosity and spatial thinking. That's the energy I bring to every interface I build.</p>
+        <p class="reveal reveal-d3">My work spans UX design, XR installation, generative art, and brand systems. I collaborate across disciplines — artists, engineers, museums, startups — always asking how a design respects the human body moving through it.</p>
         <div class="philosophy-quote reveal reveal-d3">
-          <p>Good motion design doesn't call attention to itself. It makes everything else feel inevitable.</p>
+          <p>The interface doesn't just display the relationship. It creates the conditions under which the relationship becomes possible.</p>
         </div>
       </div>
       <ul class="skills-list reveal reveal-d2">
+        <li>UX / UI Design <span>Primary</span></li>
         <li>Interaction Design <span>Primary</span></li>
-        <li>Motion & Animation <span>Primary</span></li>
-        <li>Creative Development <span>Primary</span></li>
+        <li>Creative Direction <span>Primary</span></li>
+        <li>XR &amp; Installation Art <span>Practice</span></li>
         <li>Generative Art <span>Practice</span></li>
-        <li>UX Research <span>Supporting</span></li>
-        <li>Spatial Computing <span>Emerging</span></li>
+        <li>Brand Design <span>Supporting</span></li>
       </ul>
     </div>
   </section>
@@ -594,201 +694,17 @@
     <div class="contact-inner">
       <h2 class="reveal reveal-d1">Let's make<br>something <em>move</em></h2>
       <div class="contact-links reveal reveal-d2">
-        <a href="#" class="contact-link">Email <span class="c-arrow">→</span></a>
-        <a href="#" class="contact-link">LinkedIn <span class="c-arrow">→</span></a>
-        <a href="#" class="contact-link">Instagram <span class="c-arrow">→</span></a>
-        <a href="#" class="contact-link">Are.na <span class="c-arrow">→</span></a>
-        <a href="#" class="contact-link">Read.cv <span class="c-arrow">→</span></a>
+        <a href="mailto:hello@karohall.com" class="contact-link">hello@karohall.com <span class="c-arrow">→</span></a>
       </div>
     </div>
   </section>
 
   <footer>
-    <span>© 2026 Karo Hall</span>
-    <span>Oslo, Norway</span>
+    <span>© 2026 Karolina Hallencreutz</span>
+    <span>Stockholm, Sweden</span>
   </footer>
 
   <script>
-    // ── WATER RIPPLE SIMULATION ──
-    (() => {
-      const canvas = document.getElementById('globalRipple');
-      const ctx = canvas.getContext('2d');
-      const SCALE = 3;
-      const DAMP = 0.991;
-      let w, h, buf0, buf1, buf2, imgData;
-
-      function resize() {
-        w = Math.ceil(window.innerWidth / SCALE);
-        h = Math.ceil(window.innerHeight / SCALE);
-        canvas.width = w;
-        canvas.height = h;
-        canvas.style.width = window.innerWidth + 'px';
-        canvas.style.height = window.innerHeight + 'px';
-        buf0 = new Float32Array(w * h);
-        buf1 = new Float32Array(w * h);
-        buf2 = new Float32Array(w * h);
-        imgData = ctx.createImageData(w, h);
-      }
-      resize();
-      window.addEventListener('resize', resize);
-
-      function drop(cx, cy, strength, radius) {
-        const gx = (cx / SCALE) | 0;
-        const gy = (cy / SCALE) | 0;
-        const r = Math.ceil(radius / SCALE);
-        for (let dy = -r; dy <= r; dy++) {
-          for (let dx = -r; dx <= r; dx++) {
-            const px = gx + dx, py = gy + dy;
-            if (px < 1 || px >= w - 1 || py < 1 || py >= h - 1) continue;
-            const d = Math.sqrt(dx * dx + dy * dy) / r;
-            if (d > 1) continue;
-            buf0[py * w + px] += strength * (1 - d * d);
-          }
-        }
-      }
-
-      // Echo system — schedule delayed repeat drops that fade
-      const echoes = [];
-      function dropWithEcho(cx, cy, strength, radius, echoCount, echoDelay) {
-        drop(cx, cy, strength, radius);
-        for (let i = 1; i <= echoCount; i++) {
-          echoes.push({
-            x: cx, y: cy,
-            strength: strength * Math.pow(0.4, i),
-            radius: radius + i * 6,
-            time: performance.now() + echoDelay * i
-          });
-        }
-      }
-
-      function processEchoes() {
-        const now = performance.now();
-        for (let i = echoes.length - 1; i >= 0; i--) {
-          if (now >= echoes[i].time) {
-            const e = echoes[i];
-            drop(e.x, e.y, e.strength, e.radius);
-            echoes.splice(i, 1);
-          }
-        }
-      }
-
-      // Fire on every mousemove with segment interpolation — no throttle, no gates
-      let lastX = -1, lastY = -1;
-      window.addEventListener('mousemove', e => {
-        const cx = e.clientX, cy = e.clientY;
-        if (lastX < 0) { lastX = cx; lastY = cy; }
-        const dx = cx - lastX, dy = cy - lastY;
-        const dist = Math.sqrt(dx * dx + dy * dy);
-        const steps = Math.max(1, Math.ceil(dist / 8));
-        for (let s = 0; s <= steps; s++) {
-          const f = s / steps;
-          dropWithEcho(lastX + dx * f, lastY + dy * f, 30, 22, 2, 180);
-        }
-        lastX = cx; lastY = cy;
-      }, { passive: true });
-
-      window.addEventListener('click', e => {
-        dropWithEcho(e.clientX, e.clientY, 80, 35, 3, 250);
-      });
-
-      let hidden = false;
-      document.addEventListener('visibilitychange', () => {
-        hidden = document.hidden;
-        if (!hidden) requestAnimationFrame(frame);
-      });
-
-      function frame() {
-        if (hidden) return;
-
-        // Process pending echo drops
-        processEchoes();
-
-        // Step simulation every frame
-        for (let y = 1; y < h - 1; y++) {
-          const row = y * w;
-          for (let x = 1; x < w - 1; x++) {
-            const i = row + x;
-            buf2[i] = ((buf1[i-1] + buf1[i+1] + buf1[i-w] + buf1[i+w]) * 0.5 - buf0[i]) * DAMP;
-          }
-        }
-        const tmp = buf0; buf0 = buf1; buf1 = buf2; buf2 = tmp;
-
-
-        // Render height field as blue-tinted overlay
-        const data = imgData.data;
-        for (let i = 0, len = w * h; i < len; i++) {
-          const pi = i << 2;
-          const val = buf1[i];
-          const abs = val < 0 ? -val : val;
-          if (abs < 0.25) {
-            data[pi] = 0; data[pi+1] = 0; data[pi+2] = 0; data[pi+3] = 0;
-            continue;
-          }
-          const t = Math.min(abs * 0.018, 1);
-          const t2 = t * t;
-          if (val > 0) {
-            data[pi]   = (t2 * 10)       | 0;
-            data[pi+1] = (t2 * 30)       | 0;
-            data[pi+2] = (30 + t2 * 180) | 0;
-            data[pi+3] = (15 + t2 * 140) | 0;
-          } else {
-            data[pi]   = 0;
-            data[pi+1] = (t2 * 10)       | 0;
-            data[pi+2] = (15 + t2 * 120) | 0;
-            data[pi+3] = (10 + t2 * 110) | 0;
-          }
-        }
-        ctx.putImageData(imgData, 0, 0);
-        requestAnimationFrame(frame);
-      }
-
-      requestAnimationFrame(frame);
-
-      // Cursor dot
-      const dotCanvas = document.createElement('canvas');
-      dotCanvas.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:10000;';
-      document.body.appendChild(dotCanvas);
-      const dctx = dotCanvas.getContext('2d');
-      function resizeDot() {
-        const dpr = Math.min(devicePixelRatio, 2);
-        dotCanvas.width = window.innerWidth * dpr;
-        dotCanvas.height = window.innerHeight * dpr;
-        dotCanvas.style.width = window.innerWidth + 'px';
-        dotCanvas.style.height = window.innerHeight + 'px';
-        dctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      }
-      resizeDot();
-      window.addEventListener('resize', resizeDot);
-
-      let dotX = -99, dotY = -99;
-      window.addEventListener('mousemove', e => { dotX = e.clientX; dotY = e.clientY; }, { passive: true });
-
-      function drawDot(t) {
-        dctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
-        if (dotX > 0) {
-          const pulse = 1 + Math.sin(t * 0.003) * 0.06;
-          dctx.globalAlpha = 0.03;
-          dctx.fillStyle = '#0000DD';
-          dctx.beginPath();
-          dctx.arc(dotX, dotY, 22 * pulse, 0, Math.PI * 2);
-          dctx.fill();
-          dctx.globalAlpha = 0.18;
-          dctx.fillStyle = '#4466FF';
-          dctx.beginPath();
-          dctx.arc(dotX, dotY, 2.5 * pulse, 0, Math.PI * 2);
-          dctx.fill();
-          dctx.globalAlpha = 0.5;
-          dctx.fillStyle = '#aabbff';
-          dctx.beginPath();
-          dctx.arc(dotX, dotY, 1, 0, Math.PI * 2);
-          dctx.fill();
-          dctx.globalAlpha = 1;
-        }
-        requestAnimationFrame(drawDot);
-      }
-      requestAnimationFrame(drawDot);
-    })();
-
     // ── NAV SCROLL ──
     document.querySelectorAll('.nav-links a, .nav-name').forEach(link => {
       link.addEventListener('click', e => {
@@ -843,8 +759,13 @@
         ctx.setTransform(d, 0, 0, d, 0, 0);
       }
       resize();
+      const CANVAS_MS = 1000 / 30;
+      let lastT = 0;
       function draw(t) {
         if (canvas.__stop) { canvas.__running = false; return; }
+        requestAnimationFrame(draw);
+        if (t - lastT < CANVAS_MS) return;
+        lastT = t;
         ctx.clearRect(0, 0, cw, ch);
         ctx.fillStyle = 'rgba(8,8,12,0.6)';
         ctx.fillRect(0, 0, cw, ch);
@@ -875,7 +796,7 @@
             ctx.beginPath(); ctx.arc(cx2, cy2, 1.2, 0, Math.PI*2);
             ctx.fillStyle = `rgba(0,0,221,${0.25 + Math.sin(i + t*0.001)*0.15})`; ctx.fill();
           }
-        } else {
+        } else if (idx === 3) {
           for (let i = 0; i < 20; i++) {
             const p = i/20, x1 = cw*p;
             const x2 = x1 + Math.sin(t*0.001 + i*0.4)*24;
@@ -883,12 +804,39 @@
             ctx.strokeStyle = `rgba(0,0,221,${0.05 + Math.sin(t*0.0015 + i*0.5)*0.035})`;
             ctx.lineWidth = 0.7; ctx.stroke();
           }
+        } else if (idx === 4) {
+          // GHOSTED — AR ghost traces, drifting fragments
+          for (let i = 0; i < 30; i++) {
+            const angle = (i/30)*Math.PI*2;
+            const drift = Math.sin(t*0.0005 + i*0.7)*cw*0.18;
+            const x = cw*0.5 + Math.cos(angle + t*0.0002)*cw*0.3 + drift*0.3;
+            const y = ch*0.5 + Math.sin(angle*1.3 + t*0.0003)*ch*0.3;
+            const fade = 0.08 + Math.sin(t*0.001 + i*0.4)*0.06;
+            ctx.beginPath(); ctx.arc(x, y, 0.8, 0, Math.PI*2);
+            ctx.fillStyle = `rgba(0,0,221,${fade})`; ctx.fill();
+            if (i % 5 === 0) {
+              const len = 8 + Math.sin(t*0.001 + i)*6;
+              ctx.beginPath(); ctx.moveTo(x, y); ctx.lineTo(x + Math.cos(angle)*len, y + Math.sin(angle)*len);
+              ctx.strokeStyle = `rgba(0,0,221,${fade*0.6})`; ctx.lineWidth = 0.5; ctx.stroke();
+            }
+          }
+        } else {
+          // Vego to Go — clean grid, brand system thinking
+          const cols = 6, rows = 4, gw = cw/cols, gh = ch/rows;
+          for (let r = 0; r < rows; r++) for (let c = 0; c < cols; c++) {
+            const cx2 = gw*(c+0.5), cy2 = gh*(r+0.5);
+            const s = 0.5 + Math.sin(t*0.001 + c*0.8 + r*1.1)*0.3;
+            const size = gw*0.22*s;
+            ctx.beginPath();
+            ctx.rect(cx2 - size/2, cy2 - size/2, size, size);
+            ctx.strokeStyle = `rgba(0,0,221,${0.08 + s*0.1})`; ctx.lineWidth = 0.6; ctx.stroke();
+          }
         }
-        requestAnimationFrame(draw);
       }
       requestAnimationFrame(draw);
       new ResizeObserver(resize).observe(canvas.parentElement);
     }
   </script>
+  <script src="ripple.js"></script>
 </body>
 </html>
