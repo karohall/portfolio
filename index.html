@@ -1,9 +1,867 @@
-<!DOCTYPE html>
-<html>
+﻿<!DOCTYPE html>
+<html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta http-equiv="refresh" content="0; url=pages/index.html">
-  <link rel="canonical" href="pages/index.html">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Karolina Hallencreutz</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&family=Share+Tech&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --black: #000000;
+      --steel: #6b7280;
+      --steel-light: #9ca3af;
+      --steel-dark: #374151;
+      --blue: #0000DD;
+      --text: #e8e8e8;
+      --text-muted: #b0b0b8;
+      --border: rgba(255,255,255,0.08);
+    }
+
+    html {
+      scroll-behavior: smooth;
+      color: var(--text);
+      font-family: 'Share Tech', sans-serif;
+      -webkit-font-smoothing: antialiased;
+      background: #050508;
+    }
+
+    body {
+      overflow-x: hidden;
+      background: #050508;
+      min-height: 100vh;
+      color: var(--text);
+    }
+
+    ::selection { background: var(--blue); color: #fff; }
+
+    #globalRipple {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      pointer-events: none;
+      z-index: 9999;
+      mix-blend-mode: screen;
+      opacity: 0.35;
+      filter: blur(3px);
+    }
+
+    * { cursor: none !important; }
+
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 0 clamp(24px, 5vw, 80px);
+      height: 54px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(0,0,0,0.6);
+      backdrop-filter: blur(40px);
+      -webkit-backdrop-filter: blur(40px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-name {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      color: #ffffff;
+      text-decoration: none;
+      text-transform: uppercase;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 36px;
+    }
+
+    .nav-links a {
+      font-family: 'Share Tech', sans-serif;
+      font-size: 12px;
+      letter-spacing: 0.04em;
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.3s ease;
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background: var(--blue);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .nav-links a:hover::after { transform: scaleX(0.5); }
+    .nav-links a.active::after { transform: scaleX(1); }
+    .nav-links a:hover, .nav-links a.active { color: var(--text); }
+    .nav-links a.active { transform: translateY(-1px); }
+
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      position: relative;
+    }
+
+    .hero h1 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: clamp(32px, 6.5vw, 80px);
+      font-weight: 400;
+      letter-spacing: 0.06em;
+      line-height: 1.15;
+      color: var(--text);
+      margin-bottom: 24px;
+      text-transform: uppercase;
+    }
+
+    .hero-sub {
+      font-family: 'Share Tech', sans-serif;
+      font-size: clamp(13px, 1.4vw, 16px);
+      color: var(--text-muted);
+      letter-spacing: 0.015em;
+      max-width: 440px;
+      line-height: 1.65;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    section {
+      padding: clamp(80px, 10vw, 140px) clamp(24px, 8vw, 160px);
+      position: relative;
+    }
+
+    section::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.55);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    section > * { position: relative; z-index: 1; }
+
+    .section-label {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 9px;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--steel-light);
+      margin-bottom: 56px;
+    }
+
+    .about-short-inner { max-width: 580px; }
+
+    .about-short-inner h2 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: clamp(18px, 2.4vw, 26px);
+      font-weight: 500;
+      line-height: 1.5;
+      letter-spacing: 0.02em;
+      margin-bottom: 28px;
+      text-transform: uppercase;
+    }
+
+    .about-short-inner p {
+      font-size: 15px;
+      line-height: 1.9;
+      color: var(--text-muted);
+    }
+
+    .portfolio-list { display: flex; flex-direction: column; }
+
+    .portfolio-item {
+      border-bottom: 1px solid var(--border);
+      cursor: pointer;
+      overflow: hidden;
+    }
+
+    .portfolio-item:first-child { border-top: 1px solid var(--border); }
+
+    .portfolio-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 24px 0;
+      gap: 24px;
+      user-select: none;
+    }
+
+    .portfolio-header-left {
+      display: flex;
+      align-items: baseline;
+      gap: 28px;
+      min-width: 0;
+    }
+
+    .project-number {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 10px;
+      color: var(--steel-light);
+      letter-spacing: 0.06em;
+      flex-shrink: 0;
+    }
+
+    .project-name {
+      font-family: 'Orbitron', sans-serif;
+      font-size: clamp(14px, 1.8vw, 20px);
+      font-weight: 400;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      color: var(--text);
+      transition: color 0.3s ease;
+    }
+
+    .portfolio-item:hover .project-name { color: var(--blue); }
+
+    .project-type {
+      font-size: 12px;
+      color: var(--text-muted);
+      flex-shrink: 0;
+      display: none;
+    }
+
+    .toggle-icon {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 16px;
+      color: var(--steel);
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), color 0.3s ease;
+      flex-shrink: 0;
+      line-height: 1;
+    }
+
+    .portfolio-item.open .toggle-icon { transform: rotate(45deg); color: var(--blue); }
+
+    .portfolio-expand {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .portfolio-item.open .portfolio-expand { max-height: 600px; }
+
+    .portfolio-expand-inner {
+      padding: 0 0 32px 0;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 36px;
+      align-items: start;
+    }
+
+    .expand-visual {
+      width: 100%;
+      aspect-ratio: 16 / 10;
+      overflow: hidden;
+      background: rgba(8,8,12,0.6);
+      border: 1px solid var(--border);
+    }
+
+    .expand-visual canvas { width: 100%; height: 100%; display: block; }
+    .expand-visual img { width: 100%; height: 100%; display: block; object-fit: cover; }
+
+    .expand-text { padding-top: 2px; }
+
+    .expand-tag {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 9px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: 14px;
+    }
+
+    .expand-desc {
+      font-size: 14px;
+      line-height: 1.85;
+      color: var(--text-muted);
+      margin-bottom: 20px;
+    }
+
+    .expand-meta { display: flex; gap: 20px; flex-wrap: wrap; }
+
+    .expand-meta span {
+      font-size: 11px;
+      color: var(--steel-light);
+      letter-spacing: 0.04em;
+    }
+
+    .expand-meta span strong { color: var(--text); font-weight: normal; }
+
+    .expand-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 20px;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--blue);
+      text-decoration: none;
+      transition: gap 0.3s ease, opacity 0.3s ease;
+    }
+    .expand-link:hover { gap: 14px; opacity: 0.8; }
+
+    .about-long-inner {
+      display: grid;
+      grid-template-columns: 1.3fr 1fr;
+      gap: clamp(60px, 8vw, 140px);
+      align-items: start;
+    }
+
+    .about-long-text h2 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: clamp(16px, 2vw, 22px);
+      font-weight: 500;
+      line-height: 1.55;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      margin-bottom: 32px;
+    }
+
+    .about-long-text p {
+      font-size: 15px;
+      line-height: 1.9;
+      color: var(--text-muted);
+      margin-bottom: 20px;
+    }
+
+    .about-long-text p strong { color: var(--text); font-weight: normal; }
+
+    .philosophy-quote {
+      margin-top: 36px;
+      padding-left: 18px;
+      border-left: 1.5px solid var(--blue);
+    }
+
+    .philosophy-quote p {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 12px;
+      line-height: 1.75;
+      letter-spacing: 0.025em;
+      color: var(--text);
+      margin-bottom: 0 !important;
+    }
+
+    .skills-list { list-style: none; }
+
+    .skills-list li {
+      padding: 14px 0;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 14px;
+      color: var(--text-muted);
+      transition: color 0.3s ease;
+    }
+
+    .skills-list li:first-child { border-top: 1px solid var(--border); }
+    .skills-list li:hover { color: var(--text); }
+
+    .skills-list li span {
+      font-size: 10px;
+      color: var(--steel-light);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .contact-inner { max-width: 480px; }
+
+    .contact-inner h2 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: clamp(20px, 3vw, 34px);
+      font-weight: 400;
+      line-height: 1.35;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      margin-bottom: 44px;
+    }
+
+    .contact-inner h2 em { font-style: normal; color: var(--blue); }
+
+    .contact-links { display: flex; flex-direction: column; }
+
+    .contact-link {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 0;
+      border-bottom: 1px solid var(--border);
+      text-decoration: none;
+      color: var(--text);
+      font-size: 15px;
+      transition: color 0.3s ease, padding-left 0.3s ease;
+    }
+
+    .contact-link:first-child { border-top: 1px solid var(--border); }
+    .contact-link:hover { color: var(--blue); padding-left: 6px; }
+    .contact-link .c-arrow { font-size: 12px; transition: transform 0.3s ease; }
+    .contact-link:hover .c-arrow { transform: translateX(4px); }
+
+    footer {
+      padding: 24px clamp(24px, 8vw, 160px);
+      display: flex;
+      justify-content: space-between;
+      font-size: 10px;
+      color: var(--steel-light);
+      letter-spacing: 0.05em;
+      position: relative;
+      z-index: 1;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1),
+                  transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-d1 { transition-delay: 0.1s; }
+    .reveal-d2 { transition-delay: 0.2s; }
+    .reveal-d3 { transition-delay: 0.3s; }
+
+    @media (min-width: 700px) { .project-type { display: block; } }
+
+    @media (max-width: 800px) {
+      .about-long-inner { grid-template-columns: 1fr; }
+      .portfolio-expand-inner { grid-template-columns: 1fr; }
+    }
+
+    /* Tablet / half-window */
+    @media (max-width: 680px) {
+      nav { padding: 0 20px; }
+      .nav-links { gap: 20px; }
+      .nav-links a { font-size: 11px; }
+      .nav-name { font-size: 10px; letter-spacing: 0.06em; }
+
+      .hero h1 { font-size: clamp(28px, 9vw, 52px); }
+
+      section { padding: clamp(56px, 8vw, 100px) 20px; }
+
+      .about-short-inner h2 { font-size: clamp(16px, 4vw, 22px); }
+
+      .portfolio-header { padding: 18px 0; }
+      .project-name { font-size: clamp(13px, 3.5vw, 18px); }
+
+      .contact-inner h2 { font-size: clamp(18px, 5vw, 28px); }
+
+      footer { padding: 20px; flex-direction: column; gap: 6px; }
+    }
+
+    /* Mobile */
+    @media (max-width: 480px) {
+      .nav-links { gap: 14px; }
+      .nav-links a { font-size: 10px; letter-spacing: 0.02em; }
+      .portfolio-header-left { gap: 12px; }
+      .expand-meta { gap: 12px; }
+    }
+
+    /* Very narrow — hide nav links, name only */
+    @media (max-width: 380px) {
+      .nav-links { display: none; }
+    }
+  </style>
 </head>
-<body></body>
+<body>
+
+  <canvas id="globalRipple"></canvas>
+
+  <nav>
+    <a href="#hero" class="nav-name">Karolina Hallencreutz</a>
+    <div class="nav-links">
+      <a href="#about" data-section="about">About</a>
+      <a href="#portfolio" data-section="portfolio">Portfolio</a>
+      <a href="#story" data-section="story">Story</a>
+      <a href="#contact" data-section="contact">Contact</a>
+    </div>
+  </nav>
+
+  <section class="hero" id="hero">
+    <h1 class="reveal">Karo Hall</h1>
+    <p class="hero-sub reveal reveal-d1">Bridging experiences between digital and physical space. Based in Stockholm, working at the intersection of embodiment and technology.</p>
+  </section>
+
+  <section id="about">
+    <p class="section-label reveal">About</p>
+    <div class="about-short-inner">
+      <h2 class="reveal reveal-d1">Moving at the threshold between physical presence and digital interaction</h2>
+      <p class="reveal reveal-d2">UX designer and digital creative based in Stockholm, working at the intersection of embodiment and technology. My practice bridges design studios, art institutions, and independent artistic research — bringing spatial awareness and a choreographic sensibility to every experience I build.</p>
+    </div>
+  </section>
+
+  <section id="portfolio">
+    <p class="section-label reveal">Selected Work</p>
+    <div class="portfolio-list reveal reveal-d1">
+
+      <div class="portfolio-item" data-project="0">
+        <div class="portfolio-header">
+          <div class="portfolio-header-left">
+            <span class="project-number">01</span>
+            <span class="project-name">Body of Work</span>
+            <span class="project-type">Coming Soon</span>
+          </div>
+          <span class="toggle-icon">+</span>
+        </div>
+        <div class="portfolio-expand">
+          <div class="portfolio-expand-inner">
+            <div class="expand-visual"><img src="images/portfolio-bodyofwork-hero.jpg" alt="Body of Work"></div>
+            <div class="expand-text">
+              <div class="expand-tag">Coming Soon</div>
+              <p class="expand-desc">Details to follow.</p>
+              <div class="expand-meta">
+                <span>Year — <strong>TBD</strong></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="portfolio-item" data-project="1">
+        <div class="portfolio-header">
+          <div class="portfolio-header-left">
+            <span class="project-number">02</span>
+            <span class="project-name">Archaeology of Touch</span>
+            <span class="project-type">Exposition / Digital Art</span>
+          </div>
+          <span class="toggle-icon">+</span>
+        </div>
+        <div class="portfolio-expand">
+          <div class="portfolio-expand-inner">
+            <div class="expand-visual"><img src="images/portfolio-archaeologyoftouch.png" alt="Archaeology of Touch"></div>
+            <div class="expand-text">
+              <div class="expand-tag">Exposition / Digital Art</div>
+              <p class="expand-desc">An interactive 3D gallery exploring touch as an empirical method and artistic practice. Visitors physically interact with digital objects to investigate tactile intelligence beyond verbal and cognitive modes — gathering four works on touch's absence from contemporary art institutions.</p>
+              <div class="expand-meta">
+                <span>Year — <strong>2026</strong></span>
+                <span>Role — <strong>Digital Artist</strong></span>
+                <span>Tools — <strong>Spline, Flux AI, HTML/CSS</strong></span>
+              </div>
+              <a href="archaeology-of-touch.html" class="expand-link">View full project →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="portfolio-item" data-project="2">
+        <div class="portfolio-header">
+          <div class="portfolio-header-left">
+            <span class="project-number">03</span>
+            <span class="project-name">GYST</span>
+            <span class="project-type">UX / UI Design</span>
+          </div>
+          <span class="toggle-icon">+</span>
+        </div>
+        <div class="portfolio-expand">
+          <div class="portfolio-expand-inner">
+            <div class="expand-visual"><img src="images/portfolio-gyst.png" alt="GYST"></div>
+            <div class="expand-text">
+              <div class="expand-tag">UX / UI Design</div>
+              <p class="expand-desc">Redesigning onboarding for an AI-powered revenue intelligence tool for elite content creators. The challenge: translating complex business analytics into plain language that builds emotional trust with users intimidated by data.</p>
+              <div class="expand-meta">
+                <span>Year — <strong>2026</strong></span>
+                <span>Role — <strong>UX/UI Design</strong></span>
+                <span>Tools — <strong>Figma, ProtoPie</strong></span>
+              </div>
+              <a href="gyst.html" class="expand-link">View full project →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="portfolio-item" data-project="3">
+        <div class="portfolio-header">
+          <div class="portfolio-header-left">
+            <span class="project-number">04</span>
+            <span class="project-name">Dome Lab</span>
+            <span class="project-type">Immersive Experience</span>
+          </div>
+          <span class="toggle-icon">+</span>
+        </div>
+        <div class="portfolio-expand">
+          <div class="portfolio-expand-inner">
+            <div class="expand-visual"><canvas data-project="3"></canvas></div>
+            <div class="expand-text">
+              <div class="expand-tag">Immersive Experience</div>
+              <p class="expand-desc">Coming soon.</p>
+              <div class="expand-meta">
+                <span>Venue — <strong>Tekniska Museet / Wisdome</strong></span>
+              </div>
+              <a href="dome-lab.html" class="expand-link">View full project →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="portfolio-item" data-project="4">
+        <div class="portfolio-header">
+          <div class="portfolio-header-left">
+            <span class="project-number">05</span>
+            <span class="project-name">ASS2ROID</span>
+            <span class="project-type">Art Direction</span>
+          </div>
+          <span class="toggle-icon">+</span>
+        </div>
+        <div class="portfolio-expand">
+          <div class="portfolio-expand-inner">
+            <div class="expand-visual"><img src="images/portfolio-ass2roid-logo.png" alt="ASS2ROID"></div>
+            <div class="expand-text">
+              <div class="expand-tag">Art Direction</div>
+              <p class="expand-desc">A theme camp concept for The Borderland festival — two prospectors running a mining operation on the fictional asteroid Korova Rock. Cinematic trailer, movie posters, ad campaigns, guidebook, comic strips, and a physical rover bar installation. Pulpy 1980s sci-fi aesthetics, deliberately hand-made over polished AI.</p>
+              <div class="expand-meta">
+                <span>Year — <strong>2026</strong></span>
+                <span>Venue — <strong>The Borderland</strong></span>
+                <span>Tools — <strong>Midjourney, Adobe CC</strong></span>
+              </div>
+              <a href="ass2roid.html" class="expand-link">View full project →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="portfolio-item" data-project="5">
+        <div class="portfolio-header">
+          <div class="portfolio-header-left">
+            <span class="project-number">06</span>
+            <span class="project-name">GHOSTED</span>
+            <span class="project-type">XR Installation</span>
+          </div>
+          <span class="toggle-icon">+</span>
+        </div>
+        <div class="portfolio-expand">
+          <div class="portfolio-expand-inner">
+            <div class="expand-visual"><img src="images/portfolio-ghosted.gif" alt="GHOSTED"></div>
+            <div class="expand-text">
+              <div class="expand-tag">XR Installation (WiP)</div>
+              <p class="expand-desc">An XR installation exploring intimacy and echo in virtual worlds, part of the larger project Metaphysical Archeology. A 3×2m plywood wall with laser-cut acrylic details in a forest glade — accessed via QR code, AR reveals fragmented lost digital conversations as viewers move through space.</p>
+              <div class="expand-meta">
+                <span>Year — <strong>2026</strong></span>
+                <span>Role — <strong>Digital Artist</strong></span>
+                <span>Tools — <strong>Unity, AR Foundation, Leonardo AI</strong></span>
+              </div>
+              <a href="ghosted.html" class="expand-link">View full project →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="portfolio-item" data-project="6">
+        <div class="portfolio-header">
+          <div class="portfolio-header-left">
+            <span class="project-number">07</span>
+            <span class="project-name">lola420 x johndoe887 // (a) screen play //</span>
+            <span class="project-type">Digital Art</span>
+          </div>
+          <span class="toggle-icon">+</span>
+        </div>
+        <div class="portfolio-expand">
+          <div class="portfolio-expand-inner">
+            <div class="expand-visual"><img src="images/portfolio-lola420.png" alt="lola420 x johndoe887"></div>
+            <div class="expand-text">
+              <div class="expand-tag">Digital Art</div>
+              <p class="expand-desc">An installation examining digital identity and avatar-mediated connection. Staged as a screenplay between two usernames, visitors physically sorted through manila folders of fragmented conversations — piecing together digital traces as a tactile act. Part of Unicode Camgirl by Amanda Widegren.</p>
+              <div class="expand-meta">
+                <span>Year — <strong>2025</strong></span>
+                <span>Venue — <strong>Borderland 2025</strong></span>
+                <span>Tools — <strong>Figma, Photoshop</strong></span>
+              </div>
+              <a href="a-screen-play.html" class="expand-link">View full project →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section id="story">
+    <p class="section-label reveal">Background</p>
+    <div class="about-long-inner">
+      <div class="about-long-text">
+        <h2 class="reveal reveal-d1">I move at the threshold between physical presence and digital interaction — where embodied cognition shapes the interface</h2>
+        <p class="reveal reveal-d2">My path into design began through dance and performance. A background in movement gave me a framework for understanding how bodies navigate space, interpret signals, and create meaning — and I've spent years translating that logic into digital experience.</p>
+        <p class="reveal reveal-d2"><strong>Cyberpunk literature, sci-fi, and early gaming shaped my sensibility</strong> — from Ursula K. Le Guin to Portal, I've always been drawn to systems that reward curiosity and spatial thinking. That's the energy I bring to every interface I build.</p>
+        <p class="reveal reveal-d3">My work spans UX design, XR installation, generative art, and brand systems. I collaborate across disciplines — artists, engineers, museums, startups — always asking how a design respects the human body moving through it.</p>
+        <div class="philosophy-quote reveal reveal-d3">
+          <p>The interface doesn't just display the relationship. It creates the conditions under which the relationship becomes possible.</p>
+        </div>
+      </div>
+      <ul class="skills-list reveal reveal-d2">
+        <li>UX / UI Design <span>Primary</span></li>
+        <li>Interaction Design <span>Primary</span></li>
+        <li>Creative Direction <span>Primary</span></li>
+        <li>XR &amp; Installation Art <span>Practice</span></li>
+        <li>Generative Art <span>Practice</span></li>
+        <li>Brand Design <span>Supporting</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="contact">
+    <p class="section-label reveal">Contact</p>
+    <div class="contact-inner">
+      <h2 class="reveal reveal-d1">Let's make<br>something <em>move</em></h2>
+      <div class="contact-links reveal reveal-d2">
+        <a href="mailto:hello@karohall.com" class="contact-link">hello@karohall.com <span class="c-arrow">→</span></a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <span>© 2026 Karolina Hallencreutz</span>
+    <span>Stockholm, Sweden</span>
+  </footer>
+
+  <script>
+    // ── NAV SCROLL ──
+    document.querySelectorAll('.nav-links a, .nav-name').forEach(link => {
+      link.addEventListener('click', e => {
+        const href = link.getAttribute('href');
+        if (!href || !href.startsWith('#')) return;
+        const target = document.querySelector(href);
+        if (!target) return;
+        e.preventDefault();
+        const navH = document.querySelector('nav').offsetHeight;
+        const top = target.getBoundingClientRect().top + window.scrollY - navH - 12;
+        window.scrollTo({ top, behavior: 'smooth' });
+      });
+    });
+
+    // ── NAV ACTIVE ──
+    const navLinks = document.querySelectorAll('.nav-links a');
+    const sections = document.querySelectorAll('section[id]');
+    window.addEventListener('scroll', () => {
+      let current = '';
+      sections.forEach(s => { if (window.scrollY >= s.offsetTop - 140) current = s.id; });
+      navLinks.forEach(a => a.classList.toggle('active', a.dataset.section === current));
+    });
+
+    // ── REVEAL ──
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
+    document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+    // ── PORTFOLIO EXPAND ──
+    document.querySelectorAll('.portfolio-item').forEach(item => {
+      item.querySelector('.portfolio-header').addEventListener('click', () => {
+        const isOpen = item.classList.contains('open');
+        item.classList.toggle('open');
+        const c = item.querySelector('.expand-visual canvas');
+        if (c) { c.__stop = isOpen; if (!isOpen) initProjectCanvas(c); }
+      });
+    });
+
+    // ── PROJECT CANVASES ──
+    function initProjectCanvas(canvas) {
+      if (canvas.__running) return;
+      canvas.__running = true;
+      const ctx = canvas.getContext('2d');
+      const idx = parseInt(canvas.dataset.project);
+      let cw, ch;
+      function resize() {
+        const d = Math.min(devicePixelRatio, 1.5);
+        const rect = canvas.parentElement.getBoundingClientRect();
+        cw = rect.width; ch = rect.height;
+        canvas.width = cw * d; canvas.height = ch * d;
+        ctx.setTransform(d, 0, 0, d, 0, 0);
+      }
+      resize();
+      const CANVAS_MS = 1000 / 30;
+      let lastT = 0;
+      function draw(t) {
+        if (canvas.__stop) { canvas.__running = false; return; }
+        requestAnimationFrame(draw);
+        if (t - lastT < CANVAS_MS) return;
+        lastT = t;
+        ctx.clearRect(0, 0, cw, ch);
+        ctx.fillStyle = 'rgba(8,8,12,0.6)';
+        ctx.fillRect(0, 0, cw, ch);
+        if (idx === 0) {
+          for (let row = 0; row < 14; row++) {
+            ctx.beginPath();
+            for (let x = 0; x <= cw; x += 3) {
+              const y = ch * 0.28 + row * (ch * 0.035) + Math.sin(x * 0.008 + t * 0.0008 + row * 0.5) * (12 + row * 1.2);
+              x === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+            }
+            ctx.strokeStyle = `rgba(0,0,221,${0.08 + row * 0.018})`;
+            ctx.lineWidth = 0.7; ctx.stroke();
+          }
+        } else if (idx === 1) {
+          const cols = 10, rows = 6, gw = cw / cols, gh = ch / rows;
+          for (let r = 0; r < rows; r++) for (let c = 0; c < cols; c++) {
+            const cx2 = gw*(c+0.5), cy2 = gh*(r+0.5);
+            const pulse = Math.sin(t*0.002 + c*0.4 + r*0.6);
+            ctx.beginPath(); ctx.arc(cx2, cy2, 1.8 + pulse*1.2, 0, Math.PI*2);
+            ctx.fillStyle = `rgba(0,0,221,${0.18 + pulse*0.12})`; ctx.fill();
+          }
+        } else if (idx === 2) {
+          const count = 45;
+          for (let i = 0; i < count; i++) {
+            const angle = (i/count)*Math.PI*2 + t*0.0003;
+            const r1 = cw*0.14 + Math.sin(t*0.001 + i*0.3)*cw*0.05;
+            const cx2 = cw*0.5 + Math.cos(angle)*r1, cy2 = ch*0.5 + Math.sin(angle)*r1*0.7;
+            ctx.beginPath(); ctx.arc(cx2, cy2, 1.2, 0, Math.PI*2);
+            ctx.fillStyle = `rgba(0,0,221,${0.25 + Math.sin(i + t*0.001)*0.15})`; ctx.fill();
+          }
+        } else if (idx === 3) {
+          for (let i = 0; i < 20; i++) {
+            const p = i/20, x1 = cw*p;
+            const x2 = x1 + Math.sin(t*0.001 + i*0.4)*24;
+            ctx.beginPath(); ctx.moveTo(x1, 0); ctx.quadraticCurveTo(x2, ch*0.5, x1, ch);
+            ctx.strokeStyle = `rgba(0,0,221,${0.05 + Math.sin(t*0.0015 + i*0.5)*0.035})`;
+            ctx.lineWidth = 0.7; ctx.stroke();
+          }
+        } else if (idx === 4) {
+          // GHOSTED — AR ghost traces, drifting fragments
+          for (let i = 0; i < 30; i++) {
+            const angle = (i/30)*Math.PI*2;
+            const drift = Math.sin(t*0.0005 + i*0.7)*cw*0.18;
+            const x = cw*0.5 + Math.cos(angle + t*0.0002)*cw*0.3 + drift*0.3;
+            const y = ch*0.5 + Math.sin(angle*1.3 + t*0.0003)*ch*0.3;
+            const fade = 0.08 + Math.sin(t*0.001 + i*0.4)*0.06;
+            ctx.beginPath(); ctx.arc(x, y, 0.8, 0, Math.PI*2);
+            ctx.fillStyle = `rgba(0,0,221,${fade})`; ctx.fill();
+            if (i % 5 === 0) {
+              const len = 8 + Math.sin(t*0.001 + i)*6;
+              ctx.beginPath(); ctx.moveTo(x, y); ctx.lineTo(x + Math.cos(angle)*len, y + Math.sin(angle)*len);
+              ctx.strokeStyle = `rgba(0,0,221,${fade*0.6})`; ctx.lineWidth = 0.5; ctx.stroke();
+            }
+          }
+        } else {
+          // Vego to Go — clean grid, brand system thinking
+          const cols = 6, rows = 4, gw = cw/cols, gh = ch/rows;
+          for (let r = 0; r < rows; r++) for (let c = 0; c < cols; c++) {
+            const cx2 = gw*(c+0.5), cy2 = gh*(r+0.5);
+            const s = 0.5 + Math.sin(t*0.001 + c*0.8 + r*1.1)*0.3;
+            const size = gw*0.22*s;
+            ctx.beginPath();
+            ctx.rect(cx2 - size/2, cy2 - size/2, size, size);
+            ctx.strokeStyle = `rgba(0,0,221,${0.08 + s*0.1})`; ctx.lineWidth = 0.6; ctx.stroke();
+          }
+        }
+      }
+      requestAnimationFrame(draw);
+      new ResizeObserver(resize).observe(canvas.parentElement);
+    }
+  </script>
+  <script src="ripple.js"></script>
+</body>
 </html>
