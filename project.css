@@ -51,8 +51,8 @@ nav {
   align-items: center;
   justify-content: space-between;
   background: rgba(0,0,0,0.6);
-  backdrop-filter: blur(40px);
-  -webkit-backdrop-filter: blur(40px);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--border);
 }
 
@@ -113,8 +113,8 @@ nav {
   align-items: center;
   border-bottom: 1px solid var(--border);
   background: rgba(0,0,0,0.4);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 }
 
 .breadcrumb a {

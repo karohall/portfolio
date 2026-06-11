@@ -132,8 +132,12 @@
     if (hidden) return;
     requestAnimationFrame(frame);
 
-    // Cursor dot runs every RAF (cheap, needs to feel snappy)
-    drawDot(t);
+    // Cursor dot: draw while mouse is active, clear once when it goes idle
+    if (t - lastMouseTime < 2000) {
+      drawDot(t);
+    } else {
+      dctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
+    }
 
     // Ripple simulation capped at 30fps
     const elapsed = t - lastSimTime;
