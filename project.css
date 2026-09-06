@@ -311,9 +311,11 @@ nav {
 
 /* IMAGES */
 .project-img {
-  width: 100%;
   display: block;
-  margin-bottom: clamp(56px, 8vw, 96px);
+  max-width: 100%;
+  width: auto;
+  max-height: 560px;
+  margin: 0 auto clamp(56px, 8vw, 96px);
   border-radius: 2px;
 }
 
