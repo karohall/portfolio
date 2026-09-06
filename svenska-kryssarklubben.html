@@ -57,77 +57,80 @@
 
   <div class="project-content">
 
-    <div class="content-grid reveal" style="align-items:start;">
-      <div class="content-block">
-        <p class="content-label">Overview</p>
-        <h2>Making sailing feel like it's for someone like you</h2>
-        <p>Svenska Kryssarklubben (SXK) is one of the world's largest sailing organizations. Founded in 1923, it has tens of thousands of members. However, very few of them are under 30. As part of a UX Experimentation course at Hyper Island, our team of five investigated why younger audiences weren't converting and tested whether a redesigned digital experience could change that.</p>
+    <div class="reveal" style="display:grid;grid-template-columns:1.2fr 1fr;gap:clamp(40px,6vw,80px);align-items:start;">
+
+      <div>
+        <div class="content-block">
+          <p class="content-label">Overview</p>
+          <h2>Making sailing feel like it's for someone like you</h2>
+          <p>Svenska Kryssarklubben (SXK) is one of the world's largest sailing organizations. Founded in 1923, it has tens of thousands of members. However, very few of them are under 30. As part of a UX Experimentation course at Hyper Island, our team of five investigated why younger audiences weren't converting and tested whether a redesigned digital experience could change that.</p>
+        </div>
+
+        <div class="content-block">
+          <p class="content-label">The Problem</p>
+          <h2>Built for boat owners, not the boat-curious</h2>
+          <p>The existing sxk.se seems to assume you already own a boat. The navigation, the copy, the imagery, and the membership benefits speaks to someone already inside the world. For a first-time visitor with no sailing background, the site answers one question immediately: this isn't for you.</p>
+          <p>Three friction points emerged:</p>
+          <ul>
+            <li>Visual language that signals exclusivity before a single word is read</li>
+            <li>No social proof that people like you exist in the club</li>
+            <li>A try-before-you-join path so buried it effectively doesn't exist</li>
+          </ul>
+        </div>
+
+        <div class="content-block">
+          <p class="content-label">Research</p>
+          <h2>Listening before designing</h2>
+          <p>We conducted semi-structured interviews with emphasis on asking about past behavior rather than hypothetical preferences. We then introduced the sxk.se website and asked participants to navigate the existing site while thinking out loud. We also built an expert review identifying eight pain points through the lens of a single persona: the Curious Non-Sailor, aged 20–30, no boat, no background, but genuinely interested.</p>
+          <blockquote class="pull-quote">"I can't afford a boat. And I don't have the knowledge."</blockquote>
+          <blockquote class="pull-quote">"It feels very much like something for upper middle class in Sweden."</blockquote>
+          <blockquote class="pull-quote">"We believe the sea should be open to everyone" (read aloud directly against imagery that said otherwise.)</blockquote>
+        </div>
+
+        <div class="content-block">
+          <p class="content-label">Synthesis</p>
+          <h2>From observations to assumptions</h2>
+          <p>After our initial round of interviews, we started looking for patterns. We mapped 16 assumptions by evidence level and effort to test, surfacing four that would most affect design direction. From these we built a persona: Filippa, 24, sustainability consultant, mobile-first, drawn to the lifestyle but stopped at the door. Her question: is this for someone like me?</p>
+          <p>The site had no answer.</p>
+        </div>
+
+        <div class="content-block">
+          <p class="content-label">Design &amp; Testing</p>
+          <h2>Does the fix actually work?</h2>
+          <p>The team built a high-fidelity prototype with a visible beginner entry path, refreshed imagery, and cleaner navigation. We also decided to add an AI helper, Sail-bot. We ran a second round of usability tests against it.</p>
+          <ul>
+            <li>What worked: the visual refresh landed immediately. 4 of 5 participants read the redesign as more energetic and accessible. The entry path was discoverable without prompting for 3 of 5 participants.</li>
+            <li>What didn't: path labels confused everyone who used them. Secondary pages reintroduced the commitment asks the homepage had successfully deferred. The chatbot was missed or actively avoided by all five participants.</li>
+          </ul>
+          <p>Thus the hypothesis was inconclusive, partly supported. Moreover, all participants were aged 33–41. The 20–30 persona has not yet been tested.</p>
+        </div>
+
+        <div class="content-block">
+          <p class="content-label">Recommendations</p>
+          <h2>Three things SXK should do next</h2>
+          <ul>
+            <li>Extend the tonal direction: it's working, apply it everywhere.</li>
+            <li>Rename the entry paths: discoverable isn't enough if the labels don't land.</li>
+            <li>Close the representation gap: a site that says "open to everyone" while showing a narrow demographic doesn't communicate open to everyone. It expresses the opposite.</li>
+          </ul>
+          <p>One important insight that emerged during our user research is the fact that younger audiences are more likely to discover organizations through AI answers and short-form social than through a search engine. A better website is step one. Showing up before anyone visits the site is step two. We added recommendations on SoMe strategy and influencer collaboration to address this.</p>
+        </div>
+
+        <div class="content-block">
+          <p class="content-label">Outcome</p>
+          <h2>The most useful thing an experiment can give you is a better question</h2>
+          <p>Testing is not a one-time event. Our two rounds of research told different stories that only made sense together. The most honest output was knowing exactly what to test next.</p>
+        </div>
       </div>
-      <video src="/images/sxk/sxkapp-prototype.mp4" controls playsinline style="display:block;width:100%;max-width:340px;background:#000;border-radius:4px;"></video>
-    </div>
 
-    <div class="content-block reveal">
-      <p class="content-label">The Problem</p>
-      <h2>Built for boat owners, not the boat-curious</h2>
-      <p>The existing sxk.se seems to assume you already own a boat. The navigation, the copy, the imagery, and the membership benefits speaks to someone already inside the world. For a first-time visitor with no sailing background, the site answers one question immediately: this isn't for you.</p>
-      <p>Three friction points emerged:</p>
-      <ul>
-        <li>Visual language that signals exclusivity before a single word is read</li>
-        <li>No social proof that people like you exist in the club</li>
-        <li>A try-before-you-join path so buried it effectively doesn't exist</li>
-      </ul>
-    </div>
+      <div style="display:flex;flex-direction:column;gap:16px;position:sticky;top:80px;">
+        <video src="/images/sxk/sxkapp-prototype.mp4" controls playsinline style="width:100%;background:#000;border-radius:4px;"></video>
+        <img src="/images/sxk/sxknewhero.jpg" alt="SXK redesigned homepage" style="width:100%;border-radius:4px;">
+        <img src="/images/sxk/sailbot.jpg" alt="SXK — Sail-bot AI helper" style="width:100%;border-radius:4px;">
+        <img src="/images/sxk/vanligafragor.jpg" alt="SXK — Vanliga frågor" style="width:100%;border-radius:4px;">
+        <img src="/images/sxk/trevagarin.jpg" alt="SXK — Trevagarin" style="width:100%;border-radius:4px;">
+      </div>
 
-    <div class="content-block reveal">
-      <p class="content-label">Research</p>
-      <h2>Listening before designing</h2>
-      <p>We conducted semi-structured interviews with emphasis on asking about past behavior rather than hypothetical preferences. We then introduced the sxk.se website and asked participants to navigate the existing site while thinking out loud. We also built an expert review identifying eight pain points through the lens of a single persona: the Curious Non-Sailor, aged 20–30, no boat, no background, but genuinely interested.</p>
-      <blockquote class="pull-quote">"I can't afford a boat. And I don't have the knowledge."</blockquote>
-      <blockquote class="pull-quote">"It feels very much like something for upper middle class in Sweden."</blockquote>
-      <blockquote class="pull-quote">"We believe the sea should be open to everyone" (read aloud directly against imagery that said otherwise.)</blockquote>
-    </div>
-
-    <div class="content-block reveal">
-      <p class="content-label">Synthesis</p>
-      <h2>From observations to assumptions</h2>
-      <p>After our initial round of interviews, we started looking for patterns. We mapped 16 assumptions by evidence level and effort to test, surfacing four that would most affect design direction. From these we built a persona: Filippa, 24, sustainability consultant, mobile-first, drawn to the lifestyle but stopped at the door. Her question: is this for someone like me?</p>
-      <p>The site had no answer.</p>
-    </div>
-
-    <div class="content-block reveal">
-      <p class="content-label">Design &amp; Testing</p>
-      <h2>Does the fix actually work?</h2>
-      <p>The team built a high-fidelity prototype with a visible beginner entry path, refreshed imagery, and cleaner navigation. We also decided to add an AI helper, Sail-bot. We ran a second round of usability tests against it.</p>
-      <ul>
-        <li>What worked: the visual refresh landed immediately. 4 of 5 participants read the redesign as more energetic and accessible. The entry path was discoverable without prompting for 3 of 5 participants.</li>
-        <li>What didn't: path labels confused everyone who used them. Secondary pages reintroduced the commitment asks the homepage had successfully deferred. The chatbot was missed or actively avoided by all five participants.</li>
-      </ul>
-      <p>Thus the hypothesis was inconclusive, partly supported. Moreover, all participants were aged 33–41. The 20–30 persona has not yet been tested.</p>
-    </div>
-
-    <div class="reveal" style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:clamp(48px,6vw,80px);">
-      <img src="/images/sxk/sxknewhero.jpg" alt="SXK redesigned homepage" style="width:100%;border-radius:4px;">
-      <img src="/images/sxk/sailbot.jpg" alt="SXK — Sail-bot AI helper" style="width:100%;border-radius:4px;">
-      <img src="/images/sxk/vanligafragor.jpg" alt="SXK — Vanliga frågor" style="width:100%;border-radius:4px;">
-      <img src="/images/sxk/trevagarin.jpg" alt="SXK — Trevagarin" style="width:100%;border-radius:4px;">
-    </div>
-
-    <div class="content-block reveal">
-      <p class="content-label">Recommendations</p>
-      <h2>Three things SXK should do next</h2>
-      <ul>
-        <li>Extend the tonal direction: it's working, apply it everywhere.</li>
-        <li>Rename the entry paths: discoverable isn't enough if the labels don't land.</li>
-        <li>Close the representation gap: a site that says "open to everyone" while showing a narrow demographic doesn't communicate open to everyone. It expresses the opposite.</li>
-      </ul>
-      <p>One important insight that emerged during our user research is the fact that younger audiences are more likely to discover organizations through AI answers and short-form social than through a search engine. A better website is step one. Showing up before anyone visits the site is step two. We added recommendations on SoMe strategy and influencer collaboration to address this.</p>
-    </div>
-
-
-    <div class="content-block reveal">
-      <p class="content-label">Outcome</p>
-      <h2>The most useful thing an experiment can give you is a better question</h2>
-      <p>Testing is not a one-time event. Our two rounds of research told different stories that only made sense together. The most honest output was knowing exactly what to test next.</p>
     </div>
 
     <img src="/images/sxk/test_j80_boatPro_hero.jpg" alt="Svenska Kryssarklubben sailing" class="project-img reveal" style="max-height:420px;object-fit:cover;">
