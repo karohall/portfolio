@@ -957,9 +957,19 @@
     // â”€â”€ PORTFOLIO EXPAND â”€â”€
     document.querySelectorAll('.portfolio-item').forEach(item => {
       item.querySelector('.portfolio-header').addEventListener('click', () => {
-        const link = item.querySelector('.expand-link');
-        if (link) window.location.href = link.href;
+        const isOpen = item.classList.contains('open');
+        item.classList.toggle('open');
+        const c = item.querySelector('.expand-visual canvas');
+        if (c) { c.__stop = isOpen; if (!isOpen) initProjectCanvas(c); }
       });
+      const visual = item.querySelector('.expand-visual');
+      if (visual) {
+        visual.style.cursor = 'pointer';
+        visual.addEventListener('click', () => {
+          const link = item.querySelector('.expand-link');
+          if (link) window.location.href = link.href;
+        });
+      }
     });
 
     // â”€â”€ PROJECT CANVASES â”€â”€
