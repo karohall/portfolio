@@ -1,4 +1,4 @@
----
+﻿---
 ---
 <!DOCTYPE html>
 <html lang="en">
@@ -14,19 +14,19 @@
   <canvas id="globalRipple"></canvas>
 
   <nav>
-    <a href="index.html" class="nav-name">Karolina Hallencreutz</a>
+    <a href="/" class="nav-name">Karolina Hallencreutz</a>
     <div class="nav-links">
-      <a href="index.html#about">About</a>
-      <a href="index.html#portfolio">Portfolio</a>
-      <a href="index.html#story">Story</a>
-      <a href="index.html#contact">Contact</a>
+      <a href="/#about">About</a>
+      <a href="/#portfolio">Portfolio</a>
+      <a href="/#story">Story</a>
+      <a href="/#contact">Contact</a>
     </div>
   </nav>
 
   <div class="breadcrumb">
-    <a href="index.html">← Home</a>
+    <a href="/">← Home</a>
     <span class="sep">/</span>
-    <a href="index.html#portfolio">Portfolio</a>
+    <a href="/#portfolio">Portfolio</a>
     <span class="sep">/</span>
     <span class="current">Svenska Kryssarklubben</span>
   </div>
@@ -64,9 +64,9 @@
 
     </div>
 
-    <video src="/images/sxk/sxkapp-prototype.mp4" class="project-img reveal" controls playsinline style="background:#000;"></video>
+    <video src="/images/sxk/sxkapp-prototype.mp4" class="reveal" controls playsinline style="display:block;max-width:320px;margin-left:auto;margin-right:auto;background:#000;"></video>
 
-    <img src="/images/sxk/test_j80_boatPro_hero.jpg" alt="Svenska Kryssarklubben sailing" class="project-img reveal" style="max-height:480px;object-fit:cover;">
+    <img src="/images/sxk/test_j80_boatPro_hero.jpg" alt="Svenska Kryssarklubben sailing" class="project-img reveal" style="max-height:400px;object-fit:cover;">
 
     <div class="content-block reveal">
       <p class="content-label">The Problem</p>
@@ -98,18 +98,23 @@
 
     <img src="/images/sxk/SXK_prioriteringr_da_och_nu.png" alt="SXK tonality prioritisation diagram" class="project-img reveal" style="max-height:480px;object-fit:contain;">
 
-    <div class="content-grid reveal" style="align-items:start;grid-template-columns:1fr auto;">
-      <div class="content-block">
-        <p class="content-label">Design &amp; Testing</p>
-        <h2>Does the fix actually work?</h2>
-        <p>The team built a high-fidelity prototype with a visible beginner entry path, refreshed imagery, and cleaner navigation. We also decided to add an AI helper, Sail-bot. We ran a second round of usability tests against it.</p>
-        <ul>
-          <li>What worked: the visual refresh landed immediately. 4 of 5 participants read the redesign as more energetic and accessible. The entry path was discoverable without prompting for 3 of 5 participants.</li>
-          <li>What didn't: path labels confused everyone who used them. Secondary pages reintroduced the commitment asks the homepage had successfully deferred. The chatbot was missed or actively avoided by all five participants.</li>
-        </ul>
-        <p>Thus the hypothesis was inconclusive, partly supported. Moreover, all participants were aged 33–41. The 20–30 persona has not yet been tested.</p>
-      </div>
-      <video src="/images/sxkapp-prototype.mp4" autoplay muted loop playsinline style="width:220px;border-radius:4px;display:block;"></video>
+    <div class="content-block reveal">
+      <p class="content-label">Design &amp; Testing</p>
+      <h2>Does the fix actually work?</h2>
+      <p>The team built a high-fidelity prototype with a visible beginner entry path, refreshed imagery, and cleaner navigation. We also decided to add an AI helper, Sail-bot. We ran a second round of usability tests against it.</p>
+      <ul>
+        <li>What worked: the visual refresh landed immediately. 4 of 5 participants read the redesign as more energetic and accessible. The entry path was discoverable without prompting for 3 of 5 participants.</li>
+        <li>What didn't: path labels confused everyone who used them. Secondary pages reintroduced the commitment asks the homepage had successfully deferred. The chatbot was missed or actively avoided by all five participants.</li>
+      </ul>
+      <p>Thus the hypothesis was inconclusive, partly supported. Moreover, all participants were aged 33–41. The 20–30 persona has not yet been tested.</p>
+    </div>
+
+    <img src="/images/sxk/sxknewhero.jpg" alt="SXK redesigned homepage" class="project-img reveal" style="max-height:480px;object-fit:cover;">
+
+    <div class="project-img-grid-3 reveal">
+      <img src="/images/sxk/sailbot.jpg" alt="SXK — Sail-bot AI helper" style="max-height:420px;object-fit:cover;">
+      <img src="/images/sxk/vanligafragor.jpg" alt="SXK — Vanliga frågor" style="max-height:420px;object-fit:cover;">
+      <img src="/images/sxk/trevagarin.jpg" alt="SXK — Trevagarin" style="max-height:420px;object-fit:cover;">
     </div>
 
     <div class="content-block reveal">
@@ -151,3 +156,4 @@
   <script src="/ripple.js"></script>
 </body>
 </html>
+
