@@ -199,14 +199,6 @@
   </footer>
 
   <script src="/ripple.js"></script>
-  <style>
-    .zoom-float {
-      position:fixed; pointer-events:none; z-index:9999;
-      width:30px; height:30px; display:none; align-items:center; justify-content:center;
-      font-size:17px; transform:translate(8px, 8px);
-    }
-  </style>
-  <div class="zoom-float" id="zoomFloat">🔍</div>
   <div id="sxkLbOverlay" style="display:none;position:fixed;inset:0;z-index:10000;background:rgba(0,0,0,0.92);align-items:center;justify-content:center;"><img id="sxkLbImg" src="" alt="" style="max-width:90vw;max-height:90vh;object-fit:contain;border-radius:4px;"></div>
   <script>
     const sxkOverlay = document.getElementById('sxkLbOverlay');
@@ -219,16 +211,6 @@
       });
     });
 
-    // Floating zoom icon on filmstrip images
-    const zoomFloat = document.getElementById('zoomFloat');
-    document.querySelectorAll('img.sxk-lb').forEach(img => {
-      img.addEventListener('mouseenter', () => { zoomFloat.style.display = 'flex'; });
-      img.addEventListener('mousemove', e => {
-        zoomFloat.style.left = e.clientX + 'px';
-        zoomFloat.style.top = e.clientY + 'px';
-      });
-      img.addEventListener('mouseleave', () => { zoomFloat.style.display = 'none'; });
-    });
   </script>
 </body>
 </html>
