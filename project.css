@@ -330,6 +330,8 @@ nav {
   width: 100%;
   display: block;
   border-radius: 2px;
+  max-height: 480px;
+  object-fit: contain;
 }
 
 .project-img-grid-3 {
@@ -343,6 +345,8 @@ nav {
   width: 100%;
   display: block;
   border-radius: 2px;
+  max-height: 420px;
+  object-fit: contain;
 }
 
 .project-img-grid-4 {
