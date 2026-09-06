@@ -97,33 +97,36 @@
       </ul>
     </div>
 
+    <p class="lb-hint reveal">Click images to expand</p>
     <div class="project-img-grid reveal" style="grid-template-columns:repeat(3,1fr);">
-      <img src="/images/ass2roid/ass2roid-5.png" alt="ASS2ROID — Got roids? ad 1">
-      <img src="/images/ass2roid/ass2roid-6.png" alt="ASS2ROID — Got roids? ad 2">
-      <img src="/images/ass2roid/ass2roid-7.png" alt="ASS2ROID — I've got Milk+ ad">
+      <img class="lb" src="/images/ass2roid/ass2roid-5.png" alt="ASS2ROID — Got roids? ad 1">
+      <img class="lb" src="/images/ass2roid/ass2roid-6.png" alt="ASS2ROID — Got roids? ad 2">
+      <img class="lb" src="/images/ass2roid/ass2roid-7.png" alt="ASS2ROID — I've got Milk+ ad">
     </div>
 
     <div class="project-img-grid reveal">
-      <img src="/images/ass2roid/ass2roid-8.png" alt="ASS2ROID — comic strip">
-      <img src="/images/ass2roid/ass2roid-9.png" alt="ASS2ROID — Korova Rock Tourist Guide">
+      <img class="lb" src="/images/ass2roid/ass2roid-8.png" alt="ASS2ROID — comic strip">
+      <img class="lb" src="/images/ass2roid/ass2roid-9.png" alt="ASS2ROID — Korova Rock Tourist Guide">
     </div>
 
+    <p class="lb-hint reveal">Click images to expand</p>
     <div class="project-img-grid reveal" style="grid-template-columns:repeat(3,1fr);">
-      <img src="/images/ass2roid/ass2roid-10.png" alt="ASS2ROID — guidebook page: Dihydrogen Monoxide">
-      <img src="/images/ass2roid/ass2roid-11.png" alt="ASS2ROID — guidebook page: Milk+">
-      <img src="/images/ass2roid/ass2roid-12.png" alt="ASS2ROID — guidebook page: supplements">
+      <img class="lb" src="/images/ass2roid/ass2roid-10.png" alt="ASS2ROID — guidebook page: Dihydrogen Monoxide">
+      <img class="lb" src="/images/ass2roid/ass2roid-11.png" alt="ASS2ROID — guidebook page: Milk+">
+      <img class="lb" src="/images/ass2roid/ass2roid-12.png" alt="ASS2ROID — guidebook page: supplements">
     </div>
 
-    <div class="content-block reveal">
-      <p class="content-label">The Physical Build</p>
-      <h2>Analogue art car</h2>
-      <p>The physical installation is a retrofitted garden cart transformed into an asteroid mining rover. Game consoles, custom tubing, a speaker, and hand-made packaging complete the illusion. At a festival built on collective world-making, it's the object that makes the fiction feel real.</p>
-      <div class="pull-quote">
-        <p>we have milk+. we don't drink it for the taste.</p>
+    <div class="content-grid reveal" style="align-items:start;">
+      <div class="content-block">
+        <p class="content-label">The Physical Build</p>
+        <h2>Analogue art car</h2>
+        <p>The physical installation is a retrofitted garden cart transformed into an asteroid mining rover. Game consoles, custom tubing, a speaker, and hand-made packaging complete the illusion. At a festival built on collective world-making, it's the object that makes the fiction feel real.</p>
+        <div class="pull-quote">
+          <p>we have milk+. we don't drink it for the taste.</p>
+        </div>
       </div>
+      <img src="/images/ass2roid/roverbackground.jpg" alt="ASS2ROID — Korova Rock rover bar" style="width:100%;border-radius:2px;">
     </div>
-
-    <img src="/images/ass2roid/roverbackground.jpg" alt="ASS2ROID — Korova Rock rover bar" class="project-img reveal">
 
   </div>
 
@@ -144,6 +147,38 @@
   </footer>
 
   <script src="/ripple.js"></script>
+  <div class="lb-overlay" id="lbOverlay"><img id="lbImg" src="" alt=""></div>
+  <style>
+    .lb-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 10000;
+      background: rgba(0,0,0,0.92);
+      align-items: center;
+      justify-content: center;
+    }
+    .lb-overlay.active { display: flex; }
+    .lb-overlay img { max-width: 90vw; max-height: 90vh; object-fit: contain; border-radius: 4px; }
+    .lb-hint {
+      font-size: 11px;
+      letter-spacing: 0.06em;
+      color: rgba(255,255,255,0.35);
+      margin-bottom: 12px;
+    }
+    img.lb { cursor: zoom-in !important; }
+  </style>
+  <script>
+    const lbOverlay = document.getElementById('lbOverlay');
+    const lbImg = document.getElementById('lbImg');
+    lbOverlay.addEventListener('click', () => lbOverlay.classList.remove('active'));
+    document.querySelectorAll('img.lb').forEach(img => {
+      img.addEventListener('click', () => {
+        lbImg.src = img.src;
+        lbOverlay.classList.add('active');
+      });
+    });
+  </script>
 </body>
 </html>
 
