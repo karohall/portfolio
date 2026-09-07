@@ -193,10 +193,10 @@
   </footer>
 
   <script src="/ripple.js"></script>
-  <div id="sxkLbOverlay" style="display:none;position:fixed;inset:0;z-index:10000;background:rgba(0,0,0,0.92);align-items:center;justify-content:center;cursor:url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2232%22 height=%2232%22><circle cx=%2216%22 cy=%2216%22 r=%226%22 fill=%22white%22 opacity=%220.8%22/></svg>') 16 16, auto;">
-    <button id="sxkLbPrev" style="position:absolute;left:0;top:0;width:80px;height:100%;background:none;border:none;color:#fff;font-size:52px;cursor:pointer;opacity:0.5;display:flex;align-items:center;justify-content:center;transition:opacity 0.15s;" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=0.5">&#8249;</button>
+  <div id="sxkLbOverlay" style="display:none;position:fixed;inset:0;z-index:10000;background:rgba(0,0,0,0.92);align-items:center;justify-content:center;cursor:url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2232%22 height=%2232%22><circle cx=%2216%22 cy=%2216%22 r=%228%22 fill=%22white%22 fill-opacity=%220.9%22/></svg>') 16 16, auto;">
+    <button id="sxkLbPrev" class="sxk-lb-arrow sxk-lb-arrow-left">&#8249;</button>
     <img id="sxkLbImg" src="" alt="" style="max-width:75vw;max-height:90vh;object-fit:contain;border-radius:4px;cursor:default;">
-    <button id="sxkLbNext" style="position:absolute;right:0;top:0;width:80px;height:100%;background:none;border:none;color:#fff;font-size:52px;cursor:pointer;opacity:0.5;display:flex;align-items:center;justify-content:center;transition:opacity 0.15s;" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=0.5">&#8250;</button>
+    <button id="sxkLbNext" class="sxk-lb-arrow sxk-lb-arrow-right">&#8250;</button>
   </div>
   <script>
     const sxkOverlay = document.getElementById('sxkLbOverlay');
@@ -230,6 +230,27 @@
       img.addEventListener('click', () => sxkOpen(i));
     });
   </script>
+  <style>
+    .sxk-lb-arrow {
+      position: absolute;
+      top: 0;
+      width: 80px;
+      height: 100%;
+      background: none;
+      border: none;
+      color: rgba(255,255,255,0.5);
+      font-size: 48px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: color 0.15s, background 0.15s;
+    }
+    .sxk-lb-arrow:hover { color: #fff; background: rgba(255,255,255,0.08); }
+    .sxk-lb-arrow:active { background: rgba(255,255,255,0.16); }
+    .sxk-lb-arrow-left { left: 0; }
+    .sxk-lb-arrow-right { right: 0; }
+  </style>
 </body>
 </html>
 

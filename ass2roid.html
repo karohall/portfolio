@@ -100,7 +100,7 @@
       <img class="lb" src="/images/ass2roid/research2.jpg" alt="ASS2ROID — Kroeber Institute research" style="width:100%;object-fit:contain;border-radius:2px;">
       <img class="lb" src="/images/ass2roid/research3.jpg" alt="ASS2ROID — Kroeber Institute research" style="width:100%;object-fit:contain;border-radius:2px;">
     </div>
-    <p class="reveal" style="font-size:11px;opacity:0.4;letter-spacing:0.06em;margin-bottom:clamp(24px,3vw,40px);">The authors are named after prominent figures in science fiction. It is entirely possible this whole thing is also an elaborate application to an academic world that keeps moving the goalposts. Did the population as of anno 2020 become just as confused when encountering these findings? You bet.</p>
+    <p class="reveal" style="font-size:11px;opacity:0.4;letter-spacing:0.06em;margin-bottom:clamp(24px,3vw,40px);">The authors are named after prominent figures in science fiction. It is entirely possible this whole thing is also an elaborate application to an academic world that keeps moving the goalposts.</p>
 
     <div class="content-block reveal">
       <p class="content-label">Field Notes</p>
@@ -192,33 +192,30 @@
 
   <script src="/ripple.js"></script>
 
-  <!-- Guidebook lightbox with prev/next -->
-  <div id="gbOverlay" style="display:none;position:fixed;inset:0;z-index:10000;background:rgba(0,0,0,0.92);align-items:center;justify-content:center;cursor:url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2232%22 height=%2232%22><circle cx=%2216%22 cy=%2216%22 r=%226%22 fill=%22white%22 fill-opacity=%220.8%22/></svg>') 16 16, auto;">
-    <button id="gbPrev" style="position:absolute;left:0;top:0;width:80px;height:100%;background:none;border:none;color:rgba(255,255,255,0.6);font-size:48px;cursor:pointer;display:flex;align-items:center;justify-content:center;">&#8249;</button>
+  <!-- Guidebook lightbox with next only (no prev on cover) -->
+  <div id="gbOverlay" style="display:none;position:fixed;inset:0;z-index:10000;background:rgba(0,0,0,0.92);align-items:center;justify-content:center;cursor:url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2232%22 height=%2232%22><circle cx=%2216%22 cy=%2216%22 r=%228%22 fill=%22white%22 fill-opacity=%220.9%22/></svg>') 16 16, auto;">
     <img id="gbImg" src="" alt="" style="max-width:75vw;max-height:90vh;object-fit:contain;border-radius:4px;cursor:default;">
-    <button id="gbNext" style="position:absolute;right:0;top:0;width:80px;height:100%;background:none;border:none;color:rgba(255,255,255,0.6);font-size:48px;cursor:pointer;display:flex;align-items:center;justify-content:center;">&#8250;</button>
+    <button id="gbNext" class="lb-arrow lb-arrow-right">&#8250;</button>
   </div>
   <script>
     const gbOverlay = document.getElementById('gbOverlay');
     const gbImg = document.getElementById('gbImg');
-    const gbPrev = document.getElementById('gbPrev');
     const gbNext = document.getElementById('gbNext');
     let gbImages = [];
     let gbIndex = 0;
     function gbOpen(index) {
-      gbIndex = (index + gbImages.length) % gbImages.length;
+      gbIndex = Math.max(0, Math.min(index, gbImages.length - 1));
       gbImg.src = gbImages[gbIndex].src;
+      gbNext.style.visibility = gbIndex === gbImages.length - 1 ? 'hidden' : 'visible';
       gbOverlay.style.display = 'flex';
     }
     gbOverlay.addEventListener('click', e => {
       if (e.target === gbOverlay || e.target === gbImg) gbOverlay.style.display = 'none';
     });
-    gbPrev.addEventListener('click', e => { e.stopPropagation(); gbOpen(gbIndex - 1); });
     gbNext.addEventListener('click', e => { e.stopPropagation(); gbOpen(gbIndex + 1); });
     document.addEventListener('keydown', e => {
       if (gbOverlay.style.display === 'flex') {
         if (e.key === 'ArrowRight') gbOpen(gbIndex + 1);
-        if (e.key === 'ArrowLeft') gbOpen(gbIndex - 1);
         if (e.key === 'Escape') gbOverlay.style.display = 'none';
       }
     });
@@ -248,6 +245,25 @@
       margin-bottom: 12px;
     }
     img.lb { cursor: zoom-in !important; }
+    .lb-arrow {
+      position: absolute;
+      top: 0;
+      width: 80px;
+      height: 100%;
+      background: none;
+      border: none;
+      color: rgba(255,255,255,0.5);
+      font-size: 48px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: color 0.15s, background 0.15s;
+    }
+    .lb-arrow:hover { color: #fff; background: rgba(255,255,255,0.08); }
+    .lb-arrow:active { background: rgba(255,255,255,0.16); }
+    .lb-arrow-left { left: 0; }
+    .lb-arrow-right { right: 0; }
   </style>
   <script>
     const lbOverlay = document.getElementById('lbOverlay');
