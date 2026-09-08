@@ -513,7 +513,12 @@
       text-transform: uppercase;
     }
 
-    .contact-inner { max-width: 480px; }
+    .contact-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(40px, 6vw, 100px);
+      align-items: center;
+    }
 
     .contact-inner h2 {
       font-family: 'Orbitron', sans-serif;
@@ -522,7 +527,7 @@
       line-height: 1.35;
       letter-spacing: 0.03em;
       text-transform: uppercase;
-      margin-bottom: 44px;
+      margin-bottom: 0;
     }
 
     .contact-inner h2 em { font-style: normal; color: var(--blue); }
@@ -932,6 +937,7 @@
         <a href="https://www.linkedin.com/in/karo-hallencreutz/" target="_blank" rel="noopener" class="contact-link">LinkedIn <span class="c-arrow">&rarr;</span></a>
       </div>
     </div>
+
   </section>
 
   <footer>
