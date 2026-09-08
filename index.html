@@ -786,7 +786,7 @@
         </div>
         <div class="portfolio-expand">
           <div class="portfolio-expand-inner">
-            <div class=”expand-visual”><img src=”/images/ass2roid/excavatorflames.jpg” alt=”ASS2ROID — excavator with flames” style=”width:100%;height:100%;object-fit:cover;”></div>
+            <div class="expand-visual"><img src="/images/ass2roid/excavatorflames.jpg" alt="ASS2ROID — excavator with flames" style="width:100%;height:100%;object-fit:cover;"></div>
             <div class="expand-text">
               <div class="expand-tag">Art Direction</div>
               <p class="expand-desc">ASS2ROID is a theme camp for The Borderland, a co-created festival following the Burning Man 10+1 principles. The premise: two prospectors are running a full mining operation on the fictional asteroid Korova Rock. Everything that follows is built from that premise, with total sincerity and absolutely no restraint. Imagine The Fifth Element if Luc Besson had made slightly worse decisions, which would have made it considerably better.</p>
@@ -940,7 +940,7 @@
   </footer>
 
   <script>
-    // â”€â”€ NAV SCROLL â”€â”€
+    // â"€â"€ NAV SCROLL â"€â"€
     document.querySelectorAll('.nav-links a, .nav-name').forEach(link => {
       link.addEventListener('click', e => {
         const href = link.getAttribute('href');
@@ -954,7 +954,7 @@
       });
     });
 
-    // â”€â”€ NAV ACTIVE â”€â”€
+    // â"€â"€ NAV ACTIVE â"€â"€
     const navLinks = document.querySelectorAll('.nav-links a');
     const sections = document.querySelectorAll('section[id]');
     window.addEventListener('scroll', () => {
@@ -963,13 +963,13 @@
       navLinks.forEach(a => a.classList.toggle('active', a.dataset.section === current));
     });
 
-    // â”€â”€ REVEAL â”€â”€
+    // â"€â"€ REVEAL â"€â"€
     const obs = new IntersectionObserver(entries => {
       entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
     }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
     document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 
-    // â”€â”€ PORTFOLIO EXPAND â”€â”€
+    // â"€â"€ PORTFOLIO EXPAND â"€â"€
     document.querySelectorAll('.portfolio-item').forEach(item => {
       item.querySelector('.portfolio-header').addEventListener('click', () => {
         const isOpen = item.classList.contains('open');
@@ -987,7 +987,7 @@
       }
     });
 
-    // â”€â”€ PROJECT CANVASES â”€â”€
+    // â"€â"€ PROJECT CANVASES â"€â"€
     function initProjectCanvas(canvas) {
       if (canvas.__running) return;
       canvas.__running = true;
