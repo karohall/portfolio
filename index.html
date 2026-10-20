@@ -614,6 +614,40 @@
     @media (max-width: 380px) {
       .nav-links { display: none; }
     }
+
+    .hero-available {
+      font-family: 'Share Tech', sans-serif;
+      font-size: 12px;
+      color: var(--blue);
+      letter-spacing: 0.05em;
+      margin-top: 20px;
+      opacity: 0.8;
+    }
+
+    .header-thumb {
+      width: 72px;
+      height: 45px;
+      object-fit: cover;
+      opacity: 0.55;
+      flex-shrink: 0;
+      border-radius: 1px;
+      transition: opacity 0.3s;
+    }
+    .portfolio-item:hover .header-thumb { opacity: 0.9; }
+    @media (max-width: 480px) { .header-thumb { display: none; } }
+
+    .portfolio-subsection-divider {
+      padding: 36px 0 14px;
+      border-top: 1px solid var(--border);
+    }
+    .portfolio-subsection-divider span {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 9px;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--steel-light);
+    }
   </style>
 </head>
 <body>
@@ -631,8 +665,9 @@
   </nav>
 
   <section class="hero" id="hero">
-    <h1 class="reveal">Karo Hall</h1>
-    <p class="hero-sub reveal reveal-d1">Bridging experiences between digital and physical space.</p>
+    <h1 class="reveal">Karolina Hallencreutz</h1>
+    <p class="hero-sub reveal reveal-d1">I design experiences where the body is the interface. Installations, haptics, museums, digital spaces.</p>
+    <p class="hero-available reveal reveal-d2">Currently available for roles in experience and interaction design.</p>
   </section>
 
   <section id="about">
@@ -658,9 +693,36 @@
         <div class="portfolio-header">
           <div class="portfolio-header-left">
             <span class="project-number">01</span>
+            <span class="project-name">Sphere of Touch</span>
+            <span class="project-type">Real-time interactive installation</span>
+          </div>
+          <img class="header-thumb" src="images/sphereoftouch/sphereoftouchhero.JPG" alt="">
+          <span class="toggle-icon">+</span>
+        </div>
+        <div class="portfolio-expand">
+          <div class="portfolio-expand-inner">
+            <div class="expand-visual"><img loading="lazy" decoding="async" src="images/sphereoftouch/sphereoftouchhero.JPG" alt="Sphere of Touch" style="width:100%;height:100%;object-fit:cover;"></div>
+            <div class="expand-text">
+              <div class="expand-tag">Real-time interactive installation</div>
+              <p class="expand-desc">Touch rendered visible. A live bodywork session becomes a particle field where each point of contact between practitioner and body is rendered as light, projected across the floor in real time. Shown for the first time at Helix Art Space, June 2026.</p>
+              <div class="expand-meta">
+                <span>Year — <strong>2026</strong></span>
+                <span>Tools — <strong>Unity, VFX Graph, OBS Studio, Spout</strong></span>
+              </div>
+              <a href="sphere-of-touch" class="expand-link">View full project &rarr;</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="portfolio-item" data-project="1" data-category="xr">
+        <div class="portfolio-header">
+          <div class="portfolio-header-left">
+            <span class="project-number">02</span>
             <span class="project-name">Body of Work</span>
             <span class="project-type">Exhibition Design / Artistic Platform</span>
           </div>
+          <img class="header-thumb" src="images/bodyofwork/portfolio-bodyofwork-hero.jpg" alt="">
           <span class="toggle-icon">+</span>
         </div>
         <div class="portfolio-expand">
@@ -681,88 +743,14 @@
         </div>
       </div>
 
-      <div class="portfolio-item" data-project="1" data-category="xr">
-        <div class="portfolio-header">
-          <div class="portfolio-header-left">
-            <span class="project-number">02</span>
-            <span class="project-name">Sphere of Touch</span>
-            <span class="project-type">XR Installation</span>
-          </div>
-          <span class="toggle-icon">+</span>
-        </div>
-        <div class="portfolio-expand">
-          <div class="portfolio-expand-inner">
-            <div class="expand-visual"><img loading="lazy" decoding="async" src="images/sphereoftouch/sphereoftouchhero.JPG" alt="Sphere of Touch" style="width:100%;height:100%;object-fit:cover;"></div>
-            <div class="expand-text">
-              <div class="expand-tag">XR Installation</div>
-              <p class="expand-desc">Touch rendered visible. A live bodywork session becomes a particle field where each point of contact between practitioner and body is rendered as light, projected across the floor in real time. Shown for the first time at Helix Art Space, June 2026.</p>
-              <div class="expand-meta">
-                <span>Year — <strong>2026</strong></span>
-                <span>Tools — <strong>Unity, VFX Graph, OBS Studio, Spout</strong></span>
-              </div>
-              <a href="sphere-of-touch" class="expand-link">View full project &rarr;</a>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="portfolio-item" data-project="2" data-category="ux">
+      <div class="portfolio-item" data-project="2" data-category="xr">
         <div class="portfolio-header">
           <div class="portfolio-header-left">
             <span class="project-number">03</span>
-            <span class="project-name">Svenska Kryssarklubben</span>
-            <span class="project-type">UX/UI Design</span>
-          </div>
-          <span class="toggle-icon">+</span>
-        </div>
-        <div class="portfolio-expand">
-          <div class="portfolio-expand-inner">
-            <div class="expand-visual"><img loading="lazy" decoding="async" src="images/sxk/sxk-portfolio-card.png" alt="Svenska Kryssarklubben" style="width:100%;height:100%;object-fit:cover;"></div>
-            <div class="expand-text">
-              <div class="expand-tag">UX/UI Design</div>
-              <p class="expand-desc">UX research and prototype testing for Svenska Kryssarklubben, investigating why younger audiences weren't converting, and whether a redesigned digital experience could change that.</p>
-              <div class="expand-meta">
-                <span>Year — <strong>2026</strong></span>
-                <span>Tools — <strong>Figma, Miro, Lovable</strong></span>
-              </div>
-              <a href="svenska-kryssarklubben" class="expand-link">View full project &rarr;</a>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="portfolio-item" data-project="3" data-category="art">
-        <div class="portfolio-header">
-          <div class="portfolio-header-left">
-            <span class="project-number">04</span>
-            <span class="project-name">Archaeology of Touch</span>
-            <span class="project-type">Exposition / Digital Art</span>
-          </div>
-          <span class="toggle-icon">+</span>
-        </div>
-        <div class="portfolio-expand">
-          <div class="portfolio-expand-inner">
-            <div class="expand-visual"><img loading="lazy" decoding="async" src="images/portfolio-archaeologyoftouch.png" alt="Archaeology of Touch"></div>
-            <div class="expand-text">
-              <div class="expand-tag">Exposition / Digital Art</div>
-              <p class="expand-desc">An interactive 3D gallery exploring touch as an empirical method and artistic practice. Users physically interact with digital objects to investigate tactile intelligence beyond verbal and cognitive modes, gathering four works on the absence of tactility from contemporary art institutions.</p>
-              <div class="expand-meta">
-                <span>Year — <strong>2026</strong></span>
-                <span>Tools — <strong>Spline, Flux AI, HTML/CSS</strong></span>
-              </div>
-              <a href="archaeology-of-touch" class="expand-link">View full project &rarr;</a>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="portfolio-item" data-project="4" data-category="xr">
-        <div class="portfolio-header">
-          <div class="portfolio-header-left">
-            <span class="project-number">05</span>
             <span class="project-name">Dome Lab</span>
             <span class="project-type">Immersive Experience</span>
           </div>
+          <img class="header-thumb" src="images/domelab-2.png" alt="">
           <span class="toggle-icon">+</span>
         </div>
         <div class="portfolio-expand">
@@ -781,13 +769,96 @@
         </div>
       </div>
 
+      <div class="portfolio-item" data-project="3" data-category="ux">
+        <div class="portfolio-header">
+          <div class="portfolio-header-left">
+            <span class="project-number">04</span>
+            <span class="project-name">Svenska Kryssarklubben</span>
+            <span class="project-type">UX/UI Design</span>
+          </div>
+          <img class="header-thumb" src="images/sxk/sxk-portfolio-card.png" alt="">
+          <span class="toggle-icon">+</span>
+        </div>
+        <div class="portfolio-expand">
+          <div class="portfolio-expand-inner">
+            <div class="expand-visual"><img loading="lazy" decoding="async" src="images/sxk/sxk-portfolio-card.png" alt="Svenska Kryssarklubben" style="width:100%;height:100%;object-fit:cover;"></div>
+            <div class="expand-text">
+              <div class="expand-tag">UX/UI Design</div>
+              <p class="expand-desc">UX research and prototype testing for Svenska Kryssarklubben, investigating why younger audiences weren't converting, and whether a redesigned digital experience could change that.</p>
+              <div class="expand-meta">
+                <span>Year — <strong>2026</strong></span>
+                <span>Tools — <strong>Figma, Miro, Lovable</strong></span>
+              </div>
+              <a href="svenska-kryssarklubben" class="expand-link">View full project &rarr;</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="portfolio-item" data-project="4" data-category="ux">
+        <div class="portfolio-header">
+          <div class="portfolio-header-left">
+            <span class="project-number">05</span>
+            <span class="project-name">GYST</span>
+            <span class="project-type">UX/UI Design</span>
+          </div>
+          <img class="header-thumb" src="images/portfolio-gyst.png" alt="">
+          <span class="toggle-icon">+</span>
+        </div>
+        <div class="portfolio-expand">
+          <div class="portfolio-expand-inner">
+            <div class="expand-visual"><img loading="lazy" decoding="async" src="images/portfolio-gyst.png" alt="GYST"></div>
+            <div class="expand-text">
+              <div class="expand-tag">UX/UI Design</div>
+              <p class="expand-desc">Redesigning onboarding for an AI-powered revenue intelligence tool for elite content creators. The challenge: translating complex business analytics into plain language that builds emotional trust with users intimidated by data.</p>
+              <div class="expand-meta">
+                <span>Year — <strong>2026</strong></span>
+                <span>Tools — <strong>Figma, ProtoPie</strong></span>
+              </div>
+              <a href="gyst" class="expand-link">View full project &rarr;</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div class="portfolio-item" data-project="5" data-category="art">
         <div class="portfolio-header">
           <div class="portfolio-header-left">
             <span class="project-number">06</span>
+            <span class="project-name">Archaeology of Touch</span>
+            <span class="project-type">Exposition / Digital Art</span>
+          </div>
+          <img class="header-thumb" src="images/portfolio-archaeologyoftouch.png" alt="">
+          <span class="toggle-icon">+</span>
+        </div>
+        <div class="portfolio-expand">
+          <div class="portfolio-expand-inner">
+            <div class="expand-visual"><img loading="lazy" decoding="async" src="images/portfolio-archaeologyoftouch.png" alt="Archaeology of Touch"></div>
+            <div class="expand-text">
+              <div class="expand-tag">Exposition / Digital Art</div>
+              <p class="expand-desc">An interactive 3D gallery exploring touch as an empirical method and artistic practice. Users physically interact with digital objects to investigate tactile intelligence beyond verbal and cognitive modes, gathering four works on the absence of tactility from contemporary art institutions.</p>
+              <div class="expand-meta">
+                <span>Year — <strong>2026</strong></span>
+                <span>Tools — <strong>Spline, Flux AI, HTML/CSS</strong></span>
+              </div>
+              <a href="archaeology-of-touch" class="expand-link">View full project &rarr;</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="portfolio-subsection-divider" id="practiceLabel">
+        <span>Practice &amp; Experiments</span>
+      </div>
+
+      <div class="portfolio-item" data-project="6" data-category="art" data-subsection="experiments">
+        <div class="portfolio-header">
+          <div class="portfolio-header-left">
+            <span class="project-number">01</span>
             <span class="project-name">ASS2ROID</span>
             <span class="project-type">Art Direction</span>
           </div>
+          <img class="header-thumb" src="/images/ass2roid/excavatorflames.jpg" alt="">
           <span class="toggle-icon">+</span>
         </div>
         <div class="portfolio-expand">
@@ -806,38 +877,14 @@
         </div>
       </div>
 
-      <div class="portfolio-item" data-project="6" data-category="ux">
+      <div class="portfolio-item" data-project="7" data-category="xr" data-subsection="experiments">
         <div class="portfolio-header">
           <div class="portfolio-header-left">
-            <span class="project-number">07</span>
-            <span class="project-name">GYST</span>
-            <span class="project-type">UX / UI Design</span>
-          </div>
-          <span class="toggle-icon">+</span>
-        </div>
-        <div class="portfolio-expand">
-          <div class="portfolio-expand-inner">
-            <div class="expand-visual"><img loading="lazy" decoding="async" src="images/portfolio-gyst.png" alt="GYST"></div>
-            <div class="expand-text">
-              <div class="expand-tag">UX / UI Design</div>
-              <p class="expand-desc">Redesigning onboarding for an AI-powered revenue intelligence tool for elite content creators. The challenge: translating complex business analytics into plain language that builds emotional trust with users intimidated by data.</p>
-              <div class="expand-meta">
-                <span>Year — <strong>2026</strong></span>
-                <span>Tools — <strong>Figma, ProtoPie</strong></span>
-              </div>
-              <a href="gyst" class="expand-link">View full project &rarr;</a>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="portfolio-item" data-project="7" data-category="xr">
-        <div class="portfolio-header">
-          <div class="portfolio-header-left">
-            <span class="project-number">08</span>
+            <span class="project-number">02</span>
             <span class="project-name">GHOSTED</span>
             <span class="project-type">XR Installation</span>
           </div>
+          <img class="header-thumb" src="images/portfolio-ghosted.gif" alt="">
           <span class="toggle-icon">+</span>
         </div>
         <div class="portfolio-expand">
@@ -845,7 +892,7 @@
             <div class="expand-visual"><img loading="lazy" decoding="async" src="images/portfolio-ghosted.gif" alt="GHOSTED"></div>
             <div class="expand-text">
               <div class="expand-tag">XR Installation (WiP)</div>
-              <p class="expand-desc">An XR installation about digital intimacy and echo in virtual worlds, part of the larger project Metaphysical Archeology. A 3×2m plywood wall with laser-cut acrylic details in a forest glade, with AR effects accessed via QR code that reveals lost digital conversations as viewers move through space.</p>
+              <p class="expand-desc">An XR installation about digital intimacy and echo in virtual worlds, part of the larger project Metaphysical Archaeology. A 3×2m plywood wall with laser-cut acrylic details in a forest glade, with AR effects accessed via QR code that reveals lost digital conversations as viewers move through space.</p>
               <div class="expand-meta">
                 <span>Year — <strong>2026</strong></span>
                 <span>Tools — <strong>Unity, AR Foundation, Leonardo AI</strong></span>
@@ -856,13 +903,14 @@
         </div>
       </div>
 
-      <div class="portfolio-item" data-project="8" data-category="art">
+      <div class="portfolio-item" data-project="8" data-category="art" data-subsection="experiments">
         <div class="portfolio-header">
           <div class="portfolio-header-left">
-            <span class="project-number">09</span>
+            <span class="project-number">03</span>
             <span class="project-name">lola420 x johndoe887 // (a) screen play //</span>
             <span class="project-type">Digital Art</span>
           </div>
+          <img class="header-thumb" src="images/portfolio-lola420-johndoe887.png" alt="">
           <span class="toggle-icon">+</span>
         </div>
         <div class="portfolio-expand">
@@ -881,7 +929,6 @@
         </div>
       </div>
 
-
     </div>
   </section>
 
@@ -890,11 +937,8 @@
     <div class="about-long-inner">
       <div class="about-long-text">
         <h2 class="reveal reveal-d1">I move at the threshold between physical presence and digital interaction.</h2>
-        <p class="reveal reveal-d2">My earliest memories of digital space are reading cyberpunk classics and watching sci-fi (William Gibson's works have stayed with me for years, the short story Hinterlands is a big favorite). As I grew older I was obsessed with games like Portal, exploring spatiality and emergent narratives within virtual worlds. Now I design those systems in addition to inhabiting them.</p>
+        <p class="reveal reveal-d2">My earliest memories of digital space are reading cyberpunk classics and watching sci-fi (William Gibson's works have stayed with me for years; the short story <em>Hinterlands</em> is a big favorite). As I grew older I was obsessed with games like Portal, exploring spatiality and emergent narratives within virtual worlds. Now I design spaces like them.</p>
         <p class="reveal reveal-d3">With roots in dance and performance, I bring spatial awareness and embodied cognition into digital design. My work spans UX design, XR installation, generative art, and brand systems in collaboration with artists, engineers, museums, and startups. I am always asking how the container respects the human body moving through it, curious how space shapes movement and vice versa.</p>
-        <div class="philosophy-quote reveal">
-          <p>The best work happens in the spaces between.</p>
-        </div>
       </div>
       <img src="/images/biography.jpg" alt="Karolina Hallencreutz" class="reveal" loading="lazy" decoding="async" style="width:70%;display:block;margin:0 auto;border-radius:2px;">
     </div>
@@ -907,12 +951,12 @@
         <div class="resume-section">
           <h3>Education</h3>
           <ul>
-            <li><strong>Workshop as format and artistic method</strong> SKH, 2026</li>
-            <li><strong>UX Upskill</strong> Hyper Island, 2025–2026</li>
-            <li><strong>Dipl. Medical Massage Therapist</strong> Axelsons Institute, 2024</li>
             <li><strong>MA Digital Humanities &amp; Art History</strong> Uppsala University, 2021</li>
-            <li><strong>BA Aesthetics & Art History</strong> Uppsala University, 2019</li>
-            <li><strong>Dance training — contemporary dance & ballet</strong> NECD & Iwanson International, 2013–2015</li>
+            <li><strong>BA Aesthetics &amp; Art History</strong> Uppsala University, 2019</li>
+            <li><strong>UX Upskill</strong> Hyper Island, 2025–2026</li>
+            <li><strong>Workshop as format and artistic method</strong> SKH, 2026</li>
+            <li><strong>Dipl. Medical Massage Therapist</strong> Axelsons Institute, 2024</li>
+            <li><strong>Dance training — contemporary dance &amp; ballet</strong> NECD &amp; Iwanson International, 2013–2015</li>
           </ul>
         </div>
         <div class="resume-section">
@@ -1103,6 +1147,11 @@
             if (icon) icon.textContent = '+';
           }
         });
+        const practiceLabel = document.getElementById('practiceLabel');
+        if (practiceLabel) {
+          const anyExp = Array.from(document.querySelectorAll('[data-subsection="experiments"]')).some(i => !i.classList.contains('hidden'));
+          practiceLabel.style.display = anyExp ? '' : 'none';
+        }
       });
     });
   </script>

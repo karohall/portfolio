@@ -1,0 +1,176 @@
+---
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Data Analytics for UX — Karolina Hallencreutz</title>
+  <meta name="description" content="Data Analytics for UX — a Hyper Island assessment applying analytics methods to Gymgrossisten, a Swedish sports nutrition retailer. Six findings, six recommendations.">
+  <meta name="robots" content="index, follow">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://karohall.com/data-analytics-for-ux">
+  <meta property="og:title" content="Data Analytics for UX — Karolina Hallencreutz">
+  <meta property="og:description" content="Applying analytics methods to a real product. Six findings on where and why users drop off — and what to do about it.">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=2">
+  <link rel="canonical" href="https://karohall.com/data-analytics-for-ux">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&family=Share+Tech&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/project.css">
+</head>
+<body>
+
+  <canvas id="globalRipple"></canvas>
+
+  <nav>
+    <a href="/" class="nav-name">Karolina Hallencreutz</a>
+    <div class="nav-links">
+      <a href="/#about">About</a>
+      <a href="/#portfolio">Portfolio</a>
+      <a href="/#story">Story</a>
+      <a href="/#contact">Contact</a>
+    </div>
+  </nav>
+
+  <div class="breadcrumb">
+    <a href="/">&larr; Home</a>
+    <span class="sep">/</span>
+    <a href="/#portfolio">Portfolio</a>
+    <span class="sep">/</span>
+    <span class="current">Data Analytics for UX</span>
+  </div>
+
+  <div class="project-hero">
+    <p class="project-category reveal">Data Analytics / UX Research — 2026</p>
+    <h1 class="reveal reveal-d1">Data Analytics for UX</h1>
+    <p class="project-tagline reveal reveal-d2">Finding the stories inside the numbers — six findings on where and why users drop off, and what to do about it.</p>
+    <div class="project-meta reveal reveal-d3">
+      <div class="meta-item">
+        <span class="meta-label">Role</span>
+        <span class="meta-value">UX Researcher, Data Analyst</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Tools</span>
+        <span class="meta-value">Google Analytics 4, Hotjar, Lovable</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Course</span>
+        <span class="meta-value">Hyper Island UXUS8</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Year</span>
+        <span class="meta-value">2026</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="project-content">
+
+    <div class="content-block reveal">
+      <p class="content-label">Overview</p>
+      <p>This assessment applied a range of quantitative analytics methods to Gymgrossisten, one of the largest sports nutrition retailers in the Nordic market. The goal was to move beyond surface-level metrics and surface actionable UX insights from behavioural data — to understand not just what users were doing, but why, and what design decisions might be driving those behaviours.</p>
+      <p>Six friction points were identified across the site using bounce rate analysis, engagement time data, heatmaps, session recordings, and path exploration. Each finding pairs a data signal with an interpretation of the underlying behaviour and a recommendation for what to change.</p>
+      <p style="font-size:13px;opacity:0.5;margin-top:16px;">Specific analytics figures are withheld under a confidentiality agreement with the client.</p>
+    </div>
+
+    <div class="reveal" style="display:grid;gap:clamp(32px,5vw,64px);margin-top:clamp(56px,8vw,96px);margin-bottom:clamp(56px,8vw,96px);">
+
+      <div style="border-left:2px solid var(--blue);padding-left:clamp(20px,3vw,40px);">
+        <p style="font-size:12px;letter-spacing:0.08em;opacity:0.5;text-transform:uppercase;margin-bottom:8px;">Finding 01 — Bounce rate data</p>
+        <h2 style="font-size:clamp(18px,2.2vw,24px);margin-bottom:20px;">You bounce pop-ups, I bounce... away from here</h2>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,4vw,48px);align-items:start;">
+          <div>
+            <p><strong>Object</strong><br>/ (homepage)</p>
+            <p><strong>Data</strong><br>The homepage is the highest-traffic page on the site by a significant margin, yet shows a high bounce rate and very low average engagement time — a signal that users are arriving and leaving without acting.</p>
+            <p><strong>Insight</strong><br>First-time visitors are immediately presented with two simultaneous interruptions: a cookie consent banner and a membership popup, before they have seen any content or had any reason to engage. No buy-in equals no motivation to act.</p>
+            <p><strong>Recommendations</strong></p>
+            <ul>
+              <li>Create a clearer visual hierarchy on the homepage using size, colour, and proportion — the page currently has no dominant entry point.</li>
+              <li>Reduce the cookie banner to a slim bottom bar rather than a centre-stage modal.</li>
+              <li>Delay the membership popup until after 30 seconds on site or first scroll.</li>
+            </ul>
+          </div>
+          <div style="display:grid;gap:4px;">
+            <img src="/images/dataanalytics/gg1-homepage.png" alt="Gymgrossisten homepage with popup" style="width:100%;display:block;">
+            <img src="/images/dataanalytics/gg2-popup.png" alt="Gymgrossisten membership popup" style="width:100%;display:block;">
+          </div>
+        </div>
+      </div>
+
+      <div style="border-left:2px solid var(--blue);padding-left:clamp(20px,3vw,40px);">
+        <p style="font-size:12px;letter-spacing:0.08em;opacity:0.5;text-transform:uppercase;margin-bottom:8px;">Finding 02 — Engagement time data</p>
+        <h2 style="font-size:clamp(18px,2.2vw,24px);margin-bottom:20px;">20% (drop-) off</h2>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,4vw,48px);align-items:start;">
+          <div>
+            <p><strong>Object</strong><br>/kosttillskott/proteinpulver</p>
+            <p><strong>Data</strong><br>The protein powder category is one of the highest-traffic pages on the site, yet shows a disproportionately high bounce rate and very low engagement time — unusually shallow behaviour for a high-intent product category.</p>
+            <p><strong>Insight</strong><br>The aggressive discount-first visual language — red "UPP TILL 20%" badge overlays and generic "Klicka här" CTAs — signals cheap and bargain-oriented rather than performance and quality. Users who identify as serious athletes or body-conscious consumers may disengage because the aesthetic doesn't match their self-image or aspirational identity.</p>
+            <p><strong>Recommendation</strong><br>Replace overlaid discount badge graphics with more integrated visual treatment, such as subtle percentage callouts within product cards. Replace "Klicka här" with specific CTAs like "Se proteinpulver" or "Utforska kollektionen".</p>
+          </div>
+          <img src="/images/dataanalytics/gg3-discount.png" alt="Gymgrossisten discount badges" style="width:100%;display:block;">
+        </div>
+      </div>
+
+      <div style="border-left:2px solid var(--blue);padding-left:clamp(20px,3vw,40px);">
+        <p style="font-size:12px;letter-spacing:0.08em;opacity:0.5;text-transform:uppercase;margin-bottom:8px;">Finding 03 — Heatmap</p>
+        <h2 style="font-size:clamp(18px,2.2vw,24px);margin-bottom:20px;">Ice ice baby</h2>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,4vw,48px);align-items:start;">
+          <div>
+            <p><strong>Object</strong><br>Homepage heatmap</p>
+            <p><strong>Data</strong><br>The heatmap shows near-zero engagement below the Populära produkter section, despite significant page real estate devoted to brand partnerships, editorial content, and newsletter signup. The header area shows concentrated heat, but it is scattered — logo, search, and nav are all competing equally.</p>
+            <p><strong>Insight</strong><br>Users aren't scrolling far enough to reach the content investments below the fold. No single dominant entry point is drawing the eye, so users jump between competing elements rather than being guided through the page.</p>
+            <p><strong>Recommendation</strong><br>Restructure the page hierarchy. Move highest-converting elements — category navigation and top products — higher. Remove or collapse low-engagement sections. Increase the visual dominance of the search bar as a primary action.</p>
+          </div>
+          <img src="/images/dataanalytics/gg4-heatmap.png" alt="Gymgrossisten heatmap" style="width:100%;display:block;">
+        </div>
+      </div>
+
+      <div style="border-left:2px solid var(--blue);padding-left:clamp(20px,3vw,40px);">
+        <p style="font-size:12px;letter-spacing:0.08em;opacity:0.5;text-transform:uppercase;margin-bottom:8px;">Finding 04 — Path exploration</p>
+        <h2 style="font-size:clamp(18px,2.2vw,24px);margin-bottom:20px;">Where do I go? How do I get there?</h2>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,4vw,48px);align-items:start;">
+          <div>
+            <p><strong>Object</strong><br>Path exploration of gymgrossisten.com</p>
+            <p><strong>Data</strong><br>A large volume of sessions start at the homepage, but only a small fraction reach checkout. /search is a top step-2 destination, meaning users are defaulting to search because the navigation isn't surfacing what they need.</p>
+            <p><strong>Insight</strong><br>Users are landing on the homepage without finding a clear route to purchase. The site doesn't guide them — it waits for them to figure it out themselves.</p>
+            <p><strong>Recommendation</strong><br>Add goal-oriented CTAs on the homepage — "Bygg muskler", "Gå ner i vikt", "Öka prestation" — that route users directly to relevant category pages and reduce the need to use search as a navigation fallback.</p>
+          </div>
+          <img src="/images/dataanalytics/gg5-path.png" alt="Gymgrossisten path exploration" style="width:100%;display:block;">
+        </div>
+      </div>
+
+      <div style="border-left:2px solid var(--blue);padding-left:clamp(20px,3vw,40px);">
+        <p style="font-size:12px;letter-spacing:0.08em;opacity:0.5;text-transform:uppercase;margin-bottom:8px;">Finding 05 — Session recording</p>
+        <h2 style="font-size:clamp(18px,2.2vw,24px);margin-bottom:20px;">Wall of text</h2>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,4vw,48px);align-items:start;">
+          <div>
+            <p><strong>Object</strong><br>/salte-elektrolyter-variety-28-pack/A19112-06.html, session recording</p>
+            <p><strong>Data</strong><br>The user is scrolling up and down several times across a product page presenting all product information as continuous unbroken text.</p>
+            <p><strong>Insight</strong><br>The scrolling behaviour suggests the user is trying to locate and cross-reference specific information — ingredients, dosage, usage instructions — that is buried within a dense block of copy. The cognitive load of holding information in memory while scanning forces repeated scrolling rather than straightforward reading.</p>
+            <p><strong>Recommendation</strong><br>Reduce cognitive overload, especially on mobile, by placing product information inside collapsible accordion sections — Produktbeskrivning, Näringsvärde &amp; Ingredienser, Användning, Recensioner — so users can access what they need without losing their place.</p>
+          </div>
+          <img src="/images/dataanalytics/gg6-recording.png" alt="Gymgrossisten session recording" style="width:100%;display:block;">
+        </div>
+      </div>
+
+    </div>
+
+    <div class="pull-quote reveal">
+      <p>"Without data, you're just another person with an opinion."</p>
+      <p style="margin-top:12px;font-size:13px;opacity:0.6;">— W. Edwards Deming</p>
+    </div>
+
+  </div>
+
+  <div class="project-nav">
+    <span></span>
+    <span></span>
+  </div>
+
+  <footer>
+    <span>© 2026 Karolina Hallencreutz</span>
+    <span>Stockholm, Sweden</span>
+  </footer>
+
+  <script src="/ripple.js"></script>
+</body>
+</html>
