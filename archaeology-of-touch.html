@@ -84,19 +84,34 @@
       <p>The full interactive experience is hosted online. Explore the 3D gallery at <a href="https://karohall.github.io/archaeologyoftouch" target="_blank" rel="noopener" style="color:var(--blue);text-decoration:none;border-bottom:1px solid var(--blue);">karohall.github.io/archaeologyoftouch</a></p>
     </div>
 
-    <a href="https://karohall.github.io/archaeologyoftouch" target="_blank" rel="noopener" class="reveal" style="display:block;">
+    <a href="https://karohall.github.io/archaeologyoftouch" target="_blank" rel="noopener" class="reveal" style="display:block;margin-bottom:clamp(32px,5vw,64px);">
       <img src="/images/archaeologyoftouch-1.png" alt="Archaeology of Touch — gallery view" class="project-img" style="margin-bottom:0;transition:opacity 0.2s;" onmouseover="this.style.opacity='0.8'" onmouseout="this.style.opacity='1'">
     </a>
 
-    <div class="project-img-grid reveal">
-      <img src="/images/archaeologyoftouch-2.png" alt="Archaeology of Touch — detail">
-      <img src="/images/archaeologyoftouch-3.png" alt="Archaeology of Touch — interaction">
+    <div class="project-img-grid reveal" style="margin-bottom:clamp(56px,8vw,96px);">
+      <img src="/images/archaeologyoftouch-2.png" alt="Archaeology of Touch — detail" class="lightbox-trigger" style="cursor:zoom-in;">
+      <img src="/images/archaeologyoftouch-3.png" alt="Archaeology of Touch — interaction" class="lightbox-trigger" style="cursor:zoom-in;">
+      <img src="/images/archaeologyoftouch-4.png" alt="Archaeology of Touch — 3D forms" class="lightbox-trigger" style="cursor:zoom-in;">
+      <img src="/images/archaeologyoftouch-5.png" alt="Archaeology of Touch — environment" class="lightbox-trigger" style="cursor:zoom-in;">
     </div>
 
-    <div class="project-img-grid reveal">
-      <img src="/images/archaeologyoftouch-4.png" alt="Archaeology of Touch — 3D forms">
-      <img src="/images/archaeologyoftouch-5.png" alt="Archaeology of Touch — environment">
+    <div id="lightbox" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.92);z-index:1000;align-items:center;justify-content:center;cursor:zoom-out;" onclick="this.style.display='none'">
+      <img id="lightbox-img" src="" alt="" style="max-width:90vw;max-height:90vh;object-fit:contain;border-radius:2px;">
     </div>
+
+    <script>
+      document.querySelectorAll('.lightbox-trigger').forEach(img => {
+        img.addEventListener('click', () => {
+          const lb = document.getElementById('lightbox');
+          document.getElementById('lightbox-img').src = img.src;
+          document.getElementById('lightbox-img').alt = img.alt;
+          lb.style.display = 'flex';
+        });
+      });
+      document.addEventListener('keydown', e => {
+        if (e.key === 'Escape') document.getElementById('lightbox').style.display = 'none';
+      });
+    </script>
 
     <div class="content-grid reveal">
       <div class="content-block">
